@@ -1,6 +1,6 @@
-package com.example.WebProject.VO;
+package com.example.WebProject.domain;
 
-public class User {
+public class UserDto {
 	
 	private int userNum;
 	private String userName;
@@ -24,7 +24,6 @@ public class User {
 				"userNum=" + userNum +
 				", userName='" + userName + '\''+
 				'}';
-				
 	}
 	
 }
