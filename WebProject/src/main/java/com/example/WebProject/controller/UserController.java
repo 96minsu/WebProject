@@ -1,12 +1,13 @@
 
 package com.example.WebProject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.WebProject.domain.UserDao;
 import com.example.WebProject.domain.UserDto;
@@ -19,7 +20,7 @@ public class UserController {
 
 	@GetMapping("/")
 	public String mainPage() {
-		return "index.html";
+		return "index";
 	}
 
 	@PostMapping("/user")
@@ -31,8 +32,11 @@ public class UserController {
 
 	@GetMapping("/user")
 	public String userlistPage(Model model) {
+		
+		// List<UserDto> dao = userDao.listForBeanPropertyRowMapper();
+		
 		model.addAttribute("users", userDao.listForBeanPropertyRowMapper());
-		return "userlist.html";
+		return "/userlist";
 	}
 
 
