@@ -29,6 +29,11 @@ public class UserController {
 		userDao.insert(user);
 		return "redirect:/user";
 	}
+	
+	/*
+	 * @PostMapping("/user") public String userDelete(UserDto user) {
+	 * System.out.print(user); userDao.delete(user); return "redirect:/user"; }
+	 */
 
 	@GetMapping("/user")
 	public String userlistPage(Model model) {

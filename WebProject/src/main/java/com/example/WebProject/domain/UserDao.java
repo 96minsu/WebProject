@@ -21,4 +21,10 @@ public class UserDao {
 		String query = "INSERT INTO user(userNum, userName) VALUES(?,?)";
 		return jdbcTemplate.update(query, user.getUserNum(), user.getUserName());
 	}
+
+	/*
+	 * public int delete(UserDto user) { String query =
+	 * "DELETE FROM user WHERE userNum = ?"; return jdbcTemplate.update(query,
+	 * user.getUserNum(), user.getUserName()); }
+	 */
 }
