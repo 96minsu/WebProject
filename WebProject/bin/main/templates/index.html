@@ -2,17 +2,24 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>스프링부트 DB 연동 - 입력</title>
+	<title>스프링부트 DB 연동 - 출력</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-	<h1>스프링부트 DB 연동</h1>
-	<form action="/user" method="post">
-		<input type="number" name="userNum" placeholder="number">
-		<input type="text" name="userName" placeholder="name">
-		<button type="submit" class="btn btn-danger">저장 및 출력</button>
+	<h1>메인</h1>
+	<div>
+	{{#users}}
+	<ul>
+		<li>{{userNum}}</li>
+		<li>{{userName}}</li>
+	</ul>
+	{{/users}}
+	<form action="/addUser">
+		<button type="submit" class="btn btn-danger">추가</button>
 	</form>
+		<button type="submit" class="btn btn-primary">삭제</button>
 	
+	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

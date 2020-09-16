@@ -1,4 +1,4 @@
-
+	
 package com.example.WebProject.controller;
 
 import java.util.List;
@@ -12,37 +12,43 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.WebProject.domain.UserDao;
 import com.example.WebProject.domain.UserDto;
 
-@Controller
-public class UserController {
+	@Controller
+	public class UserController {
 
 	@Autowired
 	private UserDao userDao;
 
-	@GetMapping("/")
-	public String mainPage() {
-		return "index";
-	}
-
-	@PostMapping("/user")
+	@PostMapping("/")
 	public String userAdd(UserDto user) {
 		System.out.print(user);
 		userDao.insert(user);
-		return "redirect:/user";
+		return "redirect:/";
 	}
 	
+	@GetMapping("/")
+	public String mainPage(Model model) {
+		model.addAttribute("users", userDao.listForBeanPropertyRowMapper());
+		return "index";
+	}
+	
+	@GetMapping("/addUser")
+	public String addPage() {
+		return "addUser";
+	}
+
 	/*
-	 * @PostMapping("/user") public String userDelete(UserDto user) {
-	 * System.out.print(user); userDao.delete(user); return "redirect:/user"; }
+	 * @PostMapping("/user") public String userAdd(UserDto user) {
+	 * System.out.print(user); userDao.insert(user); return "redirect:/user"; }
 	 */
 
-	@GetMapping("/user")
-	public String userlistPage(Model model) {
-		
-		// List<UserDto> dao = userDao.listForBeanPropertyRowMapper();
-		
-		model.addAttribute("users", userDao.listForBeanPropertyRowMapper());
-		return "/userlist";
-	}
+	/*
+	 * @GetMapping("/user") public String userlistPage(Model model) {
+	 * 
+	 * // List<UserDto> dao = userDao.listForBeanPropertyRowMapper();
+	 * 
+	 * model.addAttribute("users", userDao.listForBeanPropertyRowMapper()); return
+	 * "/userlist"; }
+	 */
 
 
 }
