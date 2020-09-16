@@ -32,18 +32,24 @@ public class UserController {
 		return "index";
 	}
 
-	@GetMapping("/a")
+	@GetMapping("/delete")
 	public String userDelete(int userNum) {
 		System.out.print(userNum);
 		userDao.delete(userNum);
-
 		return "redirect:/";
 	}
 
-	@GetMapping("/addUser")
+	@GetMapping("/addform")
 	public String addPage() {
-		return "addUser";
+		return "addform";
 	}
+	
+	@GetMapping("/updateform")
+	public String updatePage() {
+		return "updateform";
+	}
+	
+	
 
 	/*
 	 * @PostMapping("/user") public String userAdd(UserDto user) {
