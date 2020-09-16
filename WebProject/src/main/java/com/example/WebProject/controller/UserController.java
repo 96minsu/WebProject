@@ -1,4 +1,4 @@
-	
+
 package com.example.WebProject.controller;
 
 import java.util.List;
@@ -6,14 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.WebProject.domain.UserDao;
 import com.example.WebProject.domain.UserDto;
 
-	@Controller
-	public class UserController {
+@Controller
+public class UserController {
 
 	@Autowired
 	private UserDao userDao;
@@ -24,13 +25,21 @@ import com.example.WebProject.domain.UserDto;
 		userDao.insert(user);
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/")
 	public String mainPage(Model model) {
 		model.addAttribute("users", userDao.listForBeanPropertyRowMapper());
 		return "index";
 	}
-	
+
+	@GetMapping("/a")
+	public String userDelete(int userNum) {
+		System.out.print(userNum);
+		userDao.delete(userNum);
+
+		return "redirect:/";
+	}
+
 	@GetMapping("/addUser")
 	public String addPage() {
 		return "addUser";
@@ -49,6 +58,5 @@ import com.example.WebProject.domain.UserDto;
 	 * model.addAttribute("users", userDao.listForBeanPropertyRowMapper()); return
 	 * "/userlist"; }
 	 */
-
 
 }

@@ -7,19 +7,38 @@
 </head>
 <body>
 	<h1>메인</h1>
-	<div>
+	
+	<table class="table table-bordered" style="width:500px;">
 	{{#users}}
-	<ul>
-		<li>{{userNum}}</li>
-		<li>{{userName}}</li>
-	</ul>
+	<tr>
+		<td>{{userNum}}</td>
+		<td><a href="/addUser">{{userName}}</a></td>
+		<td>내용</td>
+		<td>
+		<a href="#" style="color: gray;font-size: 0.8em;">수정</a>
+		<a href="/a?userNum={{userNum}}" style="color: gray;font-size: 0.8em;">삭제</a>
+		<!-- <button type="submit" class="btn btn-success">수정</button> -->
+		</td>
+	</tr>
 	{{/users}}
 	<form action="/addUser">
 		<button type="submit" class="btn btn-danger">추가</button>
 	</form>
-		<button type="submit" class="btn btn-primary">삭제</button>
+	</table>
 	
-	</div>
+	<table border="1" cellpadding="10">	
+		<thead>
+			<th>num</th>
+			<th>name</th>
+		</thead>
+		<tobdy>
+			<tr th:each="name : ${userNum}">
+				<td th:text="${user.userNum}"></td>
+				<td th:text="${user.userNam}">name</td>
+			</tr>
+		</tobdy>
+	</table>
+	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
