@@ -34,13 +34,8 @@ public class UserController {
 		model.addAttribute("users", userDao.listForBeanPropertyRowMapper());
 		return "index";
 	}
+
 	
-	/*
-	 * @GetMapping("/update") public String mainpdate(@PathVariable("userNum") Long
-	 * no, Model model) { UserDto userDto = UserDao.getPost("userNum");
-	 * System.out.print(user); model.addAttribute("userDto", userDto); return
-	 * "updateform"; }
-	 */
 	
 	@PostMapping("/update")
 	public String userUpdate(UserDto user) {
@@ -62,7 +57,8 @@ public class UserController {
 	}
 
 	@GetMapping("/updateform")
-	public String updatePage() {
+	public String updatePage(Model model) {
+		model.addAttribute("users", userDao.listForBeanPropertyRowMapper());
 		return "updateform";
 	}
 

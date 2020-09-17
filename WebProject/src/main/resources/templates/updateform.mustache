@@ -9,10 +9,11 @@
 
 	<h1>데이터 수정</h1>
 	<form action="/update" method="post">
-		<input type="text" name="userNum" placeholder="number">
+		<input type="text" name="userNum" placeholder="number" {{#users}} value="{{userNum}}" {{/users}}>	
 		<input type="text" name="userName" placeholder="name">
 		<button type="submit" class="btn btn-danger">수정</button>
 	</form>
+
 	<button type="submit" class="btn btn-link"><a href="/">뒤로가기</a></button>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
