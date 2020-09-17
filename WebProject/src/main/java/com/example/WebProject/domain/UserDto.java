@@ -2,27 +2,35 @@ package com.example.WebProject.domain;
 
 public class UserDto {
 	
-	private int userNum;
-	private String userName;
+	private String id;
+	private String password;
+	private String name;
 	
-	public int getUserNum() {
-		return userNum;
+	public String getId() {
+		return id;
 	}
-	public void setUserNum(int userNum) {
-		this.userNum = userNum;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
+	public String getPassword() {
+		return password;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	@Override
 	public String toString() {
 		return "User{" +
-				"userNum=" + userNum +
-				", userName='" + userName + '\''+
+				"id=" + id +
+				", password='" + password + 
+				", name='" + name + '\''+
 				'}';
 	}
 	

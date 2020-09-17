@@ -9,8 +9,8 @@
 
 	<h1>데이터 수정</h1>
 	<form action="/update" method="post">
-		<input type="text" name="userNum" placeholder="number" {{#users}} value="{{userNum}}" {{/users}}>	
-		<input type="text" name="userName" placeholder="name">
+		<input type="number" name="listNum" placeholder="number" {{#lists}} value="{{listNum}}" {{/lists}}>	
+		<input type="text" name="listName" placeholder="name">
 		<button type="submit" class="btn btn-danger">수정</button>
 	</form>
 

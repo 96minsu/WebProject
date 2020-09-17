@@ -19,18 +19,18 @@
 			<th>action</th>
 		</thead>
 		<tobdy>
-		{{#users}}
+		{{#lists}}
 
 		<tr>
-			<td>{{userNum}}</td>
-			<td><a href="/addform">{{userName}}</a></td>
+			<td>{{listNum}}</td>
+			<td><a href="/addform">{{listName}}</a></td>
 			<td>내용</td>
-			<td><a href="/updateform?userNum={{userNum}}" style="color: gray; font-size: 0.8em;">수정</a>
-				<a href="/delete?userNum={{userNum}}"
+			<td><a href="/updateform" style="color: gray; font-size: 0.8em;">수정</a>
+				<a href="/delete?listNum={{listNum}}"
 				style="color: gray; font-size: 0.8em;">삭제</a> <!-- <button type="submit" class="btn btn-success">수정</button> -->
 			</td>
 		</tr>
-		{{/users}}
+		{{/lists}}
 		<form action="/addform">
 			<button type="submit" class="btn btn-danger">추가</button>
 		</form>
