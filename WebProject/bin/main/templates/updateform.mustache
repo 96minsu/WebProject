@@ -2,16 +2,16 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>데이터 추가</title>
+	<title>데이터 수정</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
 
-	<h1>데이터 추가</h1>
-	<form action="/" method="post">
-		<input type="number" name="userNum" placeholder="number">
+	<h1>데이터 수정</h1>
+	<form action="/update" method="post">
+		<input type="text" name="userNum" placeholder="number">
 		<input type="text" name="userName" placeholder="name">
-		<button type="submit" class="btn btn-danger">저장 및 출력</button>
+		<button type="submit" class="btn btn-danger">수정</button>
 	</form>
 	<button type="submit" class="btn btn-link"><a href="/">뒤로가기</a></button>
 	

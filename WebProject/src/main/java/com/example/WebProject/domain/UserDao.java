@@ -26,5 +26,10 @@ public class UserDao {
 		String query = "DELETE FROM user WHERE userNum=?";
 		jdbcTemplate.update(query, userNum);
 	}
+	
+	public int update(UserDto user) {
+		String query = "UPDATE user SET userName=? where userNum=?";
+		return jdbcTemplate.update(query, user.getUserName(), user.getUserNum());
+	}
 
 }

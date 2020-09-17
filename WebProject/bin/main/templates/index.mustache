@@ -25,7 +25,7 @@
 			<td>{{userNum}}</td>
 			<td><a href="/addform">{{userName}}</a></td>
 			<td>내용</td>
-			<td><a href="/updateform" style="color: gray; font-size: 0.8em;">수정</a>
+			<td><a href="/updateform?userNum={{userNum}}" style="color: gray; font-size: 0.8em;">수정</a>
 				<a href="/delete?userNum={{userNum}}"
 				style="color: gray; font-size: 0.8em;">삭제</a> <!-- <button type="submit" class="btn btn-success">수정</button> -->
 			</td>
@@ -35,7 +35,6 @@
 			<button type="submit" class="btn btn-danger">추가</button>
 		</form>
 		</tobdy>
-
 	</table>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

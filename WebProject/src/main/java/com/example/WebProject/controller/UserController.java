@@ -8,7 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.WebProject.domain.UserDao;
 import com.example.WebProject.domain.UserDto;
@@ -19,7 +22,7 @@ public class UserController {
 	@Autowired
 	private UserDao userDao;
 
-	@PostMapping("/")
+	@PostMapping("/add")
 	public String userAdd(UserDto user) {
 		System.out.print(user);
 		userDao.insert(user);
@@ -31,7 +34,21 @@ public class UserController {
 		model.addAttribute("users", userDao.listForBeanPropertyRowMapper());
 		return "index";
 	}
-
+	
+	/*
+	 * @GetMapping("/update") public String mainpdate(@PathVariable("userNum") Long
+	 * no, Model model) { UserDto userDto = UserDao.getPost("userNum");
+	 * System.out.print(user); model.addAttribute("userDto", userDto); return
+	 * "updateform"; }
+	 */
+	
+	@PostMapping("/update")
+	public String userUpdate(UserDto user) {
+		System.out.print(user);
+		userDao.update(user);
+		return "redirect:/";
+	}
+	
 	@GetMapping("/delete")
 	public String userDelete(int userNum) {
 		System.out.print(userNum);
@@ -43,26 +60,12 @@ public class UserController {
 	public String addPage() {
 		return "addform";
 	}
-	
+
 	@GetMapping("/updateform")
 	public String updatePage() {
 		return "updateform";
 	}
-	
-	
 
-	/*
-	 * @PostMapping("/user") public String userAdd(UserDto user) {
-	 * System.out.print(user); userDao.insert(user); return "redirect:/user"; }
-	 */
 
-	/*
-	 * @GetMapping("/user") public String userlistPage(Model model) {
-	 * 
-	 * // List<UserDto> dao = userDao.listForBeanPropertyRowMapper();
-	 * 
-	 * model.addAttribute("users", userDao.listForBeanPropertyRowMapper()); return
-	 * "/userlist"; }
-	 */
 
 }
