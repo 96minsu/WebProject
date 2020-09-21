@@ -30,6 +30,15 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mustache
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.3.3.RELEASE'
 
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	// compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.3.3.RELEASE'
+	
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
+	// compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.4.0'
+	
+	// https://mvnrepository.com/artifact/org.mindrot/jbcrypt
+	// compile group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+	
 }
 
 test {
