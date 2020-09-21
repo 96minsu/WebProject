@@ -27,16 +27,13 @@ public class ListController {
 	@Autowired
 	private ListDao listDao;
 
-	@GetMapping("/")
-	public String login() {
-		return "loginform";
-	}
-
-	@GetMapping("/list")
-	public String checkLogin(Model model) {
-		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
-		return "index";
-	}
+	/*
+	 * @GetMapping("/") public String login() { return "loginform"; }
+	 * 
+	 * @GetMapping("/list") public String checkLogin(Model model) {
+	 * model.addAttribute("lists", listDao.listForBeanPropertyRowMapper()); return
+	 * "index"; }
+	 */
 
 	/*
 	 * @PostMapping("/") public String chceckLogin(@RequestParam("id") String
