@@ -12,6 +12,12 @@ public class ListDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	public int getTotalCount()
+	{
+		String query = "select count(*) from user";
+		return jdbcTemplate.queryForObject(query, Integer.class);
+	}
+	
 	public List<ListDto> listForBeanPropertyRowMapper() {
 		String query = "SELECT * FROM list";
 		return jdbcTemplate.query(query, new BeanPropertyRowMapper<ListDto>(ListDto.class));
@@ -29,6 +35,11 @@ public class ListDao {
 	
 	public int update(ListDto list) {
 		String query = "UPDATE list SET listName=? where listNum=?";
+		return jdbcTemplate.update(query, list.getListName(), list.getListNum());
+	}
+	
+	public int select(ListDto list) {
+		String query = "SELECT ? from list WHERE listNum=?";
 		return jdbcTemplate.update(query, list.getListName(), list.getListNum());
 	}
 

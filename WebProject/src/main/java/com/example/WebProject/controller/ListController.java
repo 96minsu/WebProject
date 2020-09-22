@@ -26,7 +26,6 @@ public class ListController {
 
 	@Autowired
 	private ListDao listDao;
-
 	/*
 	 * @GetMapping("/") public String login() { return "loginform"; }
 	 * 
