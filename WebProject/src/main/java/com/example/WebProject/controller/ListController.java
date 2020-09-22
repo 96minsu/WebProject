@@ -64,21 +64,21 @@ public class ListController {
 	public String listAdd(ListDto list) {
 		System.out.print(list);
 		listDao.insert(list);
-		return "redirect:/list";
+		return "redirect:/index";
 	}
 
 	@PostMapping("/update")
 	public String listUpdate(ListDto list) {
 		System.out.print(list);
 		listDao.update(list);
-		return "redirect:/list";
+		return "redirect:/index";
 	}
 
 	@GetMapping("/delete")
 	public String listDelete(int listNum) {
 		System.out.print(listNum);
 		listDao.delete(listNum);
-		return "redirect:/list";
+		return "redirect:/index";
 	}
 
 	@GetMapping("/addform")
@@ -89,6 +89,7 @@ public class ListController {
 	@GetMapping("/updateform")
 	public String updatePage(Model model) {
 		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
+		System.out.println(listDao.listForBeanPropertyRowMapper());
 		return "updateform";
 	}
 

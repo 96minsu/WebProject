@@ -18,9 +18,9 @@
 			<th>content</th>
 			<th>action</th>
 		</thead>
-		<tobdy>
+		현재 접속한 계정은 <b>{{value}}</b> 입니다.
+		<tbody>
 		{{#lists}}
-
 		<tr>
 			<td>{{listNum}}</td>
 			<td><a href="/addform">{{listName}}</a></td>
@@ -29,16 +29,17 @@
 				<a href="/delete?listNum={{listNum}}"
 				style="color: gray; font-size: 0.8em;">삭제</a> <!-- <button type="submit" class="btn btn-success">수정</button> -->
 			</td>
+			
 		</tr>
 		{{/lists}}
+		<hr>
 		<form action="/addform">
 			<button type="submit" class="btn btn-danger">추가</button>
 		</form>
-		<p><label></label><a href="/">로그아웃</a></p>
-		<input type="button" value="로그아웃" onclick="location.href='logout;"><br>
-		</tobdy>
+		</tbody>
 		
 	</table>
+		<input type="button" value="로그아웃" onclick="location.href='logout'"><br>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -11,20 +11,19 @@
 <body>
 
 	<div class="container">
-	<form action="/list" method="get">
-		{{#users}}
-			<h1></h1>	{{/users}}
+	<form action="login" method="post">
 			<label for="uname"><b>아이디</b></label> 
-			<input type="text" placeholder="아이디" name="uname" required> 
+			<input type="text" placeholder="아이디" name="id" required> 
 			<label for="psw"><b>비밀번호</b></label> 
-			<input type="password" placeholder="비밀번호" name="psw" required>
+			<input type="password" placeholder="비밀번호" name="password" required>
 			<button type="submit" class="btn btn-outline-success">로그인</button>	
 	</form>
-	<form action="login" method="post">
-	아이디:<input type="text" name="id"><br>
+	<!-- <form action="login" method="post">
+	<h1>aa</h1>
+	아이디:	<input type="text" name="id"><br>
 	패스워드:<input type="password" name="password"><br>
 	<input type="submit" value="로그인">
-</form>
+	</form> -->
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

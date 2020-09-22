@@ -2,6 +2,7 @@
 package com.example.WebProject.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.WebProject.domain.ListDao;
+import com.example.WebProject.domain.UserDao;
+import com.example.WebProject.domain.UserDto;
 import com.example.WebProject.service.UserService;
 
 @Controller
@@ -22,7 +25,7 @@ public class LoginController {
 
 	@Autowired
 	private ListDao listDao;
-
+	
 	@Autowired
 	private UserService userService;
 	
@@ -31,22 +34,10 @@ public class LoginController {
 		return "loginform";
 	}
 
-	@GetMapping("/list")
-	public String checkLogin(Model model) {
-		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
-		return "index";
-	}
-
-	@GetMapping("/login")
-	public String login2() {
-		System.out.println(1);
-		return "loginform";
-	}
 	@PostMapping("/login")
 	public String login(@RequestParam("id") String id, @RequestParam String password, HttpServletResponse response,
 			HttpSession session) throws Exception {
 		int check = userService.userCheck(id, password);
-		System.out.println(1);
 		System.out.println(check);
 		if (check != UserService.ID_AND_PASSWD_OK) {
 			String message = "";
@@ -74,12 +65,18 @@ public class LoginController {
 	@RequestMapping("index")
 	public String main(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
-		System.out.println(1);
+		UserDao userDao = null;
 		if (id == null) {
 			return "redirect:/login";
 		}
 		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
+		model.addAttribute("value",id);
+		System.out.println(id); 
 		return "index";
 	}
-
+	
+	@GetMapping("/logout")
+	public String logout() {
+		return "loginform";
+	}
 }

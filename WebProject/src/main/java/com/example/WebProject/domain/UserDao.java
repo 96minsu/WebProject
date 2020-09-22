@@ -13,6 +13,11 @@ public class UserDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	public List<UserDto> listForBeanPropertyRowMapper() {
+		String query = "SELECT id FROM user";
+		return jdbcTemplate.query(query, new BeanPropertyRowMapper<UserDto>(UserDto.class));
+	}
+	
 	public int countById(String id) {
 		String query = "SELECT COUNT(*) FROM user WHERE id = ?";
 		int count = jdbcTemplate.queryForObject(query, Integer.class, id);
@@ -27,9 +32,7 @@ public class UserDao {
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
-		} finally {
-			System.out.println("티슽트");
-		}
+		} 
 	}
 	
 }
