@@ -1,0 +1,17 @@
+.helloworld {
+	background-image:url('http://superkts.com/img/jjal/cat01.jpg');
+	background-repeat:no-repeat;
+	background-position:center;
+	height:300px;
+	position:relative;
+	width:400px;
+}
+.helloworld .text {
+	bottom:0;
+	color:yellow;
+	font-family:verdana !important;
+	font-size:40pt !important;
+	font-weight:bold;
+	position:absolute;
+	text-shadow:0 0 5px #000;
+}

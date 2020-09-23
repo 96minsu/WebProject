@@ -1,0 +1,25 @@
+$(function(){
+	$("#addButton").click(function(){
+		$.ajax({
+			type:'post'
+			,url:'/addform'
+			,dataType:'html'
+			,success:function(data){
+				$("#addDiv").html(data);
+			}
+		});
+	})
+})
+
+$(function(){
+	$("#updateButton").click(function(){
+		$.ajax({
+			type:'post'
+			,url:'/updateform'
+			,dataType:'html'
+			,success:function(data){
+				$("#updateDiv").html(data);
+			}
+		});
+	})
+})

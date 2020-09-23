@@ -1,0 +1,11 @@
+<h1>데이터 수정</h1>
+	<form action="/update" method="post">
+		<input type="number" name="listNum" placeholder="number" {{#lists}}value="{{ListNum}}"{{/lists}}>	
+		<input type="text" name="listName" placeholder="name" {{#lists}}value="{{ListName}}"{{/lists}}>
+		<button type="submit" class="btn btn-danger">수정</button>
+	</form>
+
+	<button type="submit" class="btn btn-link"><a href="/index_ajax">뒤로가기</a></button>
+	
+<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>

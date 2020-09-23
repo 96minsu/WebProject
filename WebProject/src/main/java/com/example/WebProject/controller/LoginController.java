@@ -25,15 +25,15 @@ public class LoginController {
 
 	@Autowired
 	private ListDao listDao;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping("/")
 	public String login() {
 		return "loginform";
 	}
-
+	
 	@PostMapping("/login")
 	public String login(@RequestParam("id") String id, @RequestParam String password, HttpServletResponse response,
 			HttpSession session) throws Exception {
@@ -53,16 +53,16 @@ public class LoginController {
 			response.setContentType("text/html; charset=UTF-8");
 
 			PrintWriter out = response.getWriter();
-			out.println("alert('" + message + "');");
-			out.println("history.back()");
+			out.println("" + message + "");
+
 			return null;
 		}
 		session.setAttribute("id", id);
 
-		return "redirect:/index";
+		return "redirect:/index_ajax";
 	}
 
-	@RequestMapping("index")
+	@RequestMapping("index_ajax")
 	public String main(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
 		UserDao userDao = null;
@@ -70,11 +70,11 @@ public class LoginController {
 			return "redirect:/login";
 		}
 		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
-		model.addAttribute("value",id);
-		System.out.println(id); 
-		return "index";
+		model.addAttribute("value", id);
+		System.out.println(id);
+		return "index_ajax";
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout() {
 		return "loginform";

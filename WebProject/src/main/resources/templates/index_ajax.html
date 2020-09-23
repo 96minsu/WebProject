@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<table id="list" class="table table-bordered" style="width: 500px;">
+		<thead>
+			<th>num</th>
+			<th>name</th>
+			<th>title</th>
+			<th>action</th>
+		</thead>
+		
+		현재 접속한 계정은 <b>{{value}}</b> 입니다.
+		<tbody>
+		{{#lists}}
+		<tr>
+			<td>{{listNum}}</td>
+			<td>{{listName}}</a></td>
+			<td>내용</td>
+			<td><input type="button" id="updateButton" value="수정"/>
+			<input type="button" id="deleteButton" value="삭제" onclick="location.href='/delete?listNum={{listNum}}'"/>
+			</td>
+				<!-- <a href="/delete?listNum={{listNum}}"
+				style="color: gray; font-size: 0.8em;">삭제</a> -->
+		</tr>
+		{{/lists}}
+		<hr>		
+		</tbody>
+
+		<input type="button" id="addButton" value="추가"/>
+	</table>
+		<input type="button" value="로그아웃" onclick="location.href='logout'">
+		<input type="button" value="닫기" id="closeButton">
+		<br>
+		<div id="addDiv"></div>
+		<div id="updateDiv"></div>
+	<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="../static/js/form_ajax.js"></script>
+</body>
+</html>

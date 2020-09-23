@@ -2,44 +2,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>스프링부트 DB 연동 - 출력</title>
+<title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 </head>
 <body>
-	<h1>메인</h1>
 
-	<table class="table table-bordered" style="width: 500px;">
-		<thead>
-			<th>num</th>
-			<th>name</th>
-			<th>content</th>
-			<th>action</th>
-		</thead>
-		현재 접속한 계정은 <b>{{value}}</b> 입니다.
-		<tbody>
-		{{#lists}}
-		<tr>
-			<td>{{listNum}}</td>
-			<td><a href="/addform">{{listName}}</a></td>
-			<td>내용</td>
-			<td><a href="/updateform" style="color: gray; font-size: 0.8em;">수정</a>
-				<a href="/delete?listNum={{listNum}}"
-				style="color: gray; font-size: 0.8em;">삭제</a> <!-- <button type="submit" class="btn btn-success">수정</button> -->
-			</td>
-		</tr>
-		{{/lists}}
-		<hr>
-		<form action="/addform">
-			<button type="submit" class="btn btn-danger">추가</button>
-		</form>
-		</tbody>
-		
-	</table>
-		<input type="button" value="로그아웃" onclick="location.href='logout'"><br>
-
+	<div class="container">
+	<form action="login" method="post">
+			<label for="uname"><b>아이디</b></label> 
+			<input type="text" placeholder="아이디" name="id" required> 
+			<label for="psw"><b>비밀번호</b></label> 
+			<input type="password" placeholder="비밀번호" name="password" required>
+			<button type="submit" class="btn btn-outline-success">로그인</button>	
+	</form>
+	<!-- <form action="login" method="post">
+	<h1>aa</h1>
+	아이디:	<input type="text" name="id"><br>
+	패스워드:<input type="password" name="password"><br>
+	<input type="submit" value="로그인">
+	</form> -->
+	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

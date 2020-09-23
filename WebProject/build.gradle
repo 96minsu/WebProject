@@ -30,14 +30,20 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mustache
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.3.3.RELEASE'
 
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
-	// compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.3.3.RELEASE'
+	// https://mvnrepository.com/artifact/org.webjars/popper.js
+	compile group: 'org.webjars', name: 'popper.js', version: '2.0.2'
+
+	// https://mvnrepository.com/artifact/org.webjars/webjars-locator
+	compile group: 'org.webjars', name: 'webjars-locator', version: '0.40'
+
+	// https://mvnrepository.com/artifact/org.webjars/bootstrap
+	compile group: 'org.webjars', name: 'bootstrap', version: '4.5.2'
 	
-	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
-	// compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.4.0'
+	// https://mvnrepository.com/artifact/org.webjars/jquery
+	compile group: 'org.webjars', name: 'jquery', version: '3.5.1'
 	
-	// https://mvnrepository.com/artifact/org.mindrot/jbcrypt
-	// compile group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.3.4.RELEASE'
 	
 }
 
