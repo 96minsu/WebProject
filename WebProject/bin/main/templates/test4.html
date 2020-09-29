@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="stylesheet"
+	href="webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+	<input type = "button" onclick = "javascript:ajax()" value = "제출" />
+    <div><table id = "boardList" border = "1"></table></div>
+    
+	<script type="text/javascript">
+		function createTable() {
+
+			var param = {};
+			param.BoardVo.bdId = "01111";
+			param = JSON.stringify(param);
+			$.ajax({
+				url : "/getBoardList.do",
+				data : param,
+				type : 'post',
+				success : function(data) {
+					var results = data.boardList;
+					var str = '<TR>';
+					$.each(results, function(i) {
+						str += '<TD>' + results[i].bdTitl + '</TD><TD>'
+								+ results[i].bdWriter + '</TD><TD>'
+								+ results[i].bdRgDt + '</TD>';
+						str += '</TR>';
+					});
+					$("#boardList").append(str);
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+		}
+	</script>
+
+
+	<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="../static/js/test4.js"></script>
+</body>
+</html>

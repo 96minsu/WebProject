@@ -1,11 +1,11 @@
 $(function(){
-	$("#saveButton").click(function(){
+	$("#addButton").click(function(){
 		$.ajax({
 			type:'post'
-			,url:'/add'
+			,url:'/addform'
 			,dataType:'html'
 			,success:function(data){
-				$("#list").html(data);
+				$("#addDiv").html(data);
 				
 			}
 		});

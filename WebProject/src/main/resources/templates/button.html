@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="stylesheet"
+	href="webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+	<button type="submit" class="btn btn-outline-success" onclick="location.href='index2'">클릭</button>
+
+	<script>
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200 || xhr.status === 201) {
+                console.log(xhr.responseText);
+            } else {
+                console.error(xhr.responseText);
+            }
+        }
+    };
+    xhr.open('GET', 'http://localhost:8080/jsonData');
+    xhr.send();
+</script>
+	<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

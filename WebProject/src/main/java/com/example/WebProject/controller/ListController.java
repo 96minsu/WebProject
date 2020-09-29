@@ -31,21 +31,21 @@ public class ListController {
 	public String listAdd(ListDto list) {
 		System.out.print(list);
 		listDao.insert(list);
-		return "redirect:/index_ajax";
+		return "redirect:/index2";
 	}
 	
 	@PostMapping("/update")
 	public String listUpdate(ListDto list) {
 		System.out.print(list);
 		listDao.update(list);
-		return "redirect:/index_ajax";
+		return "redirect:/index2";
 	}
 
 	@GetMapping("/delete")
 	public String listDelete(int listNum) {
 		System.out.print(listNum);
 		listDao.delete(listNum);
-		return "redirect:/index_ajax";
+		return "redirect:/index2";
 	}
 
 	/*
@@ -56,5 +56,6 @@ public class ListController {
 	 * System.out.println(listDao.listForBeanPropertyRowMapper()); return
 	 * "updateform_ajax"; }
 	 */
+	 
 
 }

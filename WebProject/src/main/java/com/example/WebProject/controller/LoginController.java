@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,7 +60,7 @@ public class LoginController {
 		}
 		session.setAttribute("id", id);
 
-		return "redirect:/index_ajax";
+		return "redirect:/index2";
 	}
 
 	@RequestMapping("index_ajax")
@@ -72,11 +73,18 @@ public class LoginController {
 		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
 		model.addAttribute("value", id);
 		System.out.println(id);
-		return "index_ajax";
+		return "index2";
 	}
 
 	@GetMapping("/logout")
 	public String logout() {
 		return "loginform";
+	}
+	
+	@RequestMapping("index_ajax/{num}")
+	public String index(@PathVariable int num, Model model) {
+		int res=num;
+		model.addAttribute("msg", "num:"+res);
+		return "index2";
 	}
 }
