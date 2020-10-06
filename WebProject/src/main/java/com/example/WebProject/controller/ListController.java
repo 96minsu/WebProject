@@ -27,6 +27,7 @@ public class ListController {
 	@Autowired
 	private ListDao listDao;
 
+	
 	@PostMapping("/add")
 	public String listAdd(ListDto list) {
 		System.out.print(list);
@@ -47,15 +48,5 @@ public class ListController {
 		listDao.delete(listNum);
 		return "redirect:/index2";
 	}
-
-	/*
-	 * @GetMapping("/addform") public String addPage() { return "addform_ajax"; }
-	 * 
-	 * @GetMapping("/updateform") public String updatePage(Model model) {
-	 * model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
-	 * System.out.println(listDao.listForBeanPropertyRowMapper()); return
-	 * "updateform_ajax"; }
-	 */
-	 
 
 }

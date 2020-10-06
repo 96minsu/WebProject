@@ -50,9 +50,4 @@ public class ListDao {
 		jdbcTemplate.update(query, listNum);
 	}
 	
-	public int testNum(ListDto list) {
-		String query = "SELECT listNum FROM list WHERE listNum=?";
-		return jdbcTemplate.update(query, list.getListNum());
-	}
-
 }

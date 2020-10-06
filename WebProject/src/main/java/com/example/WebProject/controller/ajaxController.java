@@ -1,5 +1,6 @@
 package com.example.WebProject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.WebProject.domain.ListDao;
+import com.example.WebProject.domain.ListDto;
 import com.example.WebProject.domain.UserDao;
 
 @Controller
@@ -20,6 +23,24 @@ public class ajaxController {
 
 	@Autowired
 	ListDao listDao;
+	
+	@GetMapping("/button")
+	public String button() {
+		return "button";
+	}
+	
+	@ResponseBody
+	@GetMapping("/jsonData")
+	public List jsonData() {
+
+		List<ListDto> list = new ArrayList<ListDto>();
+		
+		for (int i = 0; i < listDao.getListCount(); i++) {
+			list.add(listDao.listForBeanPropertyRowMapper().get(i));
+		}
+		System.out.println(list);
+		return list;
+	}
 	
 	@PostMapping("/addform")
 	public String goAddform() {
@@ -34,9 +55,4 @@ public class ajaxController {
 		return "updateform_ajax";
 	}
 
-	/*
-	 * @RequestMapping("/contentform") public String sendData(Model model) {
-	 * model.addAttribute("lists", listDao.listForBeanPropertyRowMapper()); return
-	 * "contentform"; }
-	 */
 }
