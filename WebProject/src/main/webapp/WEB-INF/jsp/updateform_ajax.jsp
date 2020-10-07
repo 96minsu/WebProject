@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <h1>데이터 수정</h1>
 	<form action="/update" method="post">
-		<input type="number" name="listNum" placeholder="number" {{#lists}}value="{{ListNum}}"{{/lists}}>	
-		<input type="text" name="listName" placeholder="name" {{#lists}}value="{{ListName}}"{{/lists}}>
+		<input type="number" name="listNum" placeholder="number" value="${lists.listNum}">	
+		<input type="text" name="listName" placeholder="name" value="${lists.listName}">
 		<button type="submit" class="btn btn-danger">수정</button>
 	</form>
 

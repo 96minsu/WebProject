@@ -20,8 +20,60 @@
 			</tr>
 		</thead>
 		<tbody id="tbody"></tbody>
-	<input type="button" value="로그아웃" class="btn btn-info" onclick="location.href='logout'">
+		<input type="button" value="로그아웃" class="btn btn-info"
+			onclick="location.href='logout'">
 	</table>
+
+	<div id="page">
+		<span class="inner_paging"> <a href="/#">이전</a> <a href="/#">1</a>
+			<a href="/#">2</a> <a href="/#">3</a> <a href="/#">다음</a>
+		</span>
+	</div>
+
+	<!-- Paging : S
+	<c:if test="${count > 0}">
+		<c:set var="pageCount"
+			value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />
+		<c:set var="startPage" value="${pageGroupSize*(nowPageGroup-1)+1}" />
+		<c:set var="endPage" value="${startPage + pageGroupSize-1}" />
+
+		<c:if test="${endPage > pageCount}">
+			<c:set var="endPage" value="${pageCount}" />
+		</c:if>
+
+		<div class="jb-center">
+
+			<ul class="pagination">
+
+				<c:if test="${nowPageGroup > 1}">
+					<li><a href="#;"
+						onclick='paging_script(${(nowPageGroup-2)*pageGroupSize+1 },${pageSize},"boardSearchVO","/board/notice/boardList");'><span
+							class="glyphicon glyphicon-chevron-left"></span></a></li>
+				</c:if>
+
+				<c:if test="${nowPageGroup == 1}">
+					<li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+				</c:if>
+
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<li<c:if test="${pageIndex == i}"> class="active" </c:if>><a
+						href="#;"
+						onclick='paging_script(${i},${pageSize},"boardSearchVO","/board/notice/boardList");'>${i}</a></li>
+				</c:forEach>
+
+				<c:if test="${nowPageGroup < pageGroupCount}">
+
+					<li><a href="#;"
+						onclick='paging_script(${nowPageGroup*pageGroupSize+1},${pageSize},"boardSearchVO","/board/notice/boardList");'><span
+							class="glyphicon glyphicon-chevron-right"></span></a></li>
+				</c:if>
+			</ul>
+		</div>
+
+	</c:if>
+	Pageing : E -->
+
+
 
 	<div id="addDiv"></div>
 	<div id="updateDiv"></div>

@@ -39,6 +39,9 @@ public class ajaxController {
 			list.add(listDao.listForBeanPropertyRowMapper().get(i));
 		}
 		System.out.println(list);
+		System.out.println(list.get(0).getClass().getName());
+		System.out.println(list.getClass().getName());
+		
 		return list;
 	}
 	

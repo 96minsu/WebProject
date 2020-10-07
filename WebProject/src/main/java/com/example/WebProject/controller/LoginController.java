@@ -1,4 +1,3 @@
-
 package com.example.WebProject.controller;
 
 import java.io.PrintWriter;
@@ -21,6 +20,9 @@ import com.example.WebProject.domain.ListDao;
 import com.example.WebProject.domain.ListDto;
 import com.example.WebProject.domain.UserDao;
 import com.example.WebProject.domain.UserDto;
+import com.example.WebProject.pNs.Pagination;
+import com.example.WebProject.pNs.Search;
+import com.example.WebProject.service.BoardService;
 import com.example.WebProject.service.UserService;
 
 @Controller
@@ -28,6 +30,9 @@ public class LoginController {
 
 	@Autowired
 	private ListDao listDao;
+	
+	@Autowired
+	private BoardService boardService;
 
 	@Autowired
 	private UserService userService;
@@ -65,8 +70,32 @@ public class LoginController {
 		return "redirect:/index2";
 	}
 
+	
 	@GetMapping("/index2")
-	public String main(HttpSession session, Model model) {
+	public String main(HttpSession session, Model model, 
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam(required = false, defaultValue = "title") String searchType,
+			@RequestParam(required = false) String keyword
+			) throws Exception {
+		
+		Search search = new Search();
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+
+		// 전체 게시글 개수
+		int listCnt = boardService.getBoardListCnt(search);
+
+		search.pageInfo(page, range, listCnt);
+
+		
+		// Pagination 객체생성
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt);
+		
+		model.addAttribute("pagination", search);
+		model.addAttribute("boardList", boardService.getBoardList(search));
+
 		String id = (String) session.getAttribute("id");
 		if (id == null) {
 			return "redirect:/login";
@@ -74,15 +103,18 @@ public class LoginController {
 		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
 		model.addAttribute("id", id);
 		System.out.println(id);
+
+		List<ListDto> listDto = listDao.listForBeanPropertyRowMapper();
+
 		return "index2";
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session){
-	   //session.invalidate();
-	   /*session에 해당하는 이름을 매개변수로 넣어줘야 한다*/
-	   session.removeAttribute("id");
-	   return "redirect:/";
+	public String logout(HttpSession session) {
+		// session.invalidate();
+		/* session에 해당하는 이름을 매개변수로 넣어줘야 한다 */
+		session.removeAttribute("id");
+		return "redirect:/";
 	}
 
 }

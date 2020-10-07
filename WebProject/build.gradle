@@ -42,9 +42,6 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.webjars/jquery
 	compile group: 'org.webjars', name: 'jquery', version: '3.5.1'
 	
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.3.4.RELEASE'
-	
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-json
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-json', version: '2.3.4.RELEASE'
 	
@@ -54,6 +51,11 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl
 	compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
 	
+	// https://mvnrepository.com/artifact/javax.servlet/jstl
+	compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+	
+	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.38'
 	
 	
 }

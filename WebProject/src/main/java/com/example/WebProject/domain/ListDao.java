@@ -1,11 +1,15 @@
 package com.example.WebProject.domain;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.example.WebProject.pNs.Pagination;
+import com.example.WebProject.pNs.Search;
 
 @Repository
 public class ListDao {
@@ -48,6 +52,21 @@ public class ListDao {
 	public void selectNum(int listNum) {
 		String query = "SELECT listNum FROM list WHERE listNum=?";
 		jdbcTemplate.update(query, listNum);
+	}
+	
+	
+	public int getBoardListCount(Search search)
+	{
+		String query = "select count(*) from list";
+		return jdbcTemplate.queryForObject(query, Integer.class);
+	}
+	
+	public List<ListDto> getBoardList(Search search) throws Exception{
+		String query = "select * from list limit ?, ?";
+		System.out.println(search.getStartList());
+		System.out.println(search.getListSize());
+		return jdbcTemplate.query(query, new BeanPropertyRowMapper<ListDto>(ListDto.class), 
+				search.getStartList(), search.getListSize());
 	}
 	
 }
