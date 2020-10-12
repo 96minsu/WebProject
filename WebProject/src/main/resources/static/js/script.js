@@ -13,23 +13,16 @@ $('table').on('click', 'button[id="updateButton"]', function(e){
 $('table').on('click', 'button[id="deleteButton"]', function(e){
 		alert("삭제되었습니다.");
 	});
+	
+$(document).ready(function() {
+            $("#keyword").keyup(function() {
+                var k = $(this).val();
+                $("#table > tbody > tr");
+                var temp = $("#table > tbody > tr > td:nth-child(5n+2):contains('" + 1 + "')");
 
-$(document).on('click', '#btnSearch', function(e){
-
-		e.preventDefault();
-
-		var url = "${index2}";
-
-		url = url + "?searchType=" + $('#searchType').val();
-
-		url = url + "&keyword=" + $('#keyword').val();
-
-		location.href = url;
-
-		console.log(url);
-
-	});	
-
+                $(temp).parent().show();
+            })
+        })
 $(document).ready(function(){
 
 	getDataTable();
@@ -78,14 +71,15 @@ $(document).ready(function(){
 		    	console.log(data);
 		    }
 	    });
+	    
 	}
 
 	function page() {
-		var reSortColors=function($table) {
-			$('tbody tr:odd td', $table).removeClass('even').removeClass('listtd').addClass('odd');
-			$('tbody tr:even td', $table).removeClass('odd').removeClass('listtd').addClass('even');
-		};
 		$('table.paginated').each(function() {
+			var reSortColors = function($table) {
+		  	$('tbody tr:odd td', $table).removeClass('listtd');
+  			$('tbody tr:even td', $table).removeClass('listtd');
+ 			};
 			var pagesu = 10;
 			var currentPage = 0;
 			var numPerPage = 10;
@@ -170,9 +164,13 @@ $(document).ready(function(){
    		$pager.insertAfter($table).find('span.page-number:first').next().next().addClass('active');   
    		$pager.appendTo($table);
    		$table.trigger('repaginate');
- 	});
+ 		});
 	}
+	
+	
+	
 })
+
 
 
     

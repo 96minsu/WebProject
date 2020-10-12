@@ -1,3 +1,4 @@
+
 package com.example.WebProject.service;
 
 import java.util.List;
@@ -13,17 +14,17 @@ import com.example.WebProject.pNs.Search;
 
 @Service
 @Transactional
-public class BoardServiceImpl implements BoardService{
-	
+public class BoardServiceImpl implements BoardService {
+
 	@Autowired
 	ListDao listDao;
-	
+
 	@Override
 	public int getBoardListCnt(Search search) throws Exception {
 
-		return listDao.getBoardListCount(search);
+		return listDao.getBoardListCnt(search);
 	}
-	
+
 	@Override
 	public List<ListDto> getBoardList(Search search) throws Exception {
 		return listDao.getBoardList(search);

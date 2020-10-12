@@ -7,10 +7,10 @@ public class Pagination {
 	private int page;
 	private int range;
 	private int listCnt;
-	private int pageCnt;
-	private int startPage;
-	private int startList;
-	private int endPage;
+	private int pageCnt; // 전체 페이지 수
+	private int startPage; // 시작 페이지
+	private int startList; // 게시판 시작 번호
+	private int endPage; // 끝 페이지
 	private boolean prev;
 	private boolean next;
 	
@@ -130,7 +130,7 @@ public class Pagination {
 
 		// 전체 페이지수
 
-		this.pageCnt = (int) Math.ceil(listCnt / listSize);
+		this.pageCnt = (int) Math.ceil(listCnt / listSize)+1;
 
 		// 시작 페이지
 
@@ -150,7 +150,8 @@ public class Pagination {
 
 		// 다음 버튼 상태
 
-		this.next = endPage > pageCnt ? false : true;
+		this.next = pageCnt > endPage ? true : false;
+
 
 		if (this.endPage > this.pageCnt) {
 

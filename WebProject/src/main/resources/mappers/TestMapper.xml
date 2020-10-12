@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!-- resultType은 select 구문에서만 존재 -->
+ <!-- parameterType은 값을 받아야 하는 매개변수가 있는 경우 사용 -->
+ <!-- count(*)처럼 1개의 정수만 리턴하는 경우 resultType이 Integer -->
+ <!-- 2개의 데이터를 리턴하는 경우 resultType이 Map이거나 ... -->
+<mapper namespace="com.example.WebProject.domain.dao.TestDAO"><!--namespace를 통해 UserDAO와 연결합니다. -->
+  		
+  	<select id="selectUsers" parameterType="com.example.WebProject.domain.dto.TestDTO"
+		resultType="com.example.WebProject.domain.dto.TestDTO"><!-- selectUsers()메서드를 호출하면 실행할 SELECT문이며, 
+						UserDTO 객체를 파라미터로 받아, UserDTO객체를 반환합니다.-->
+  			SELECT `listNum`, `listName`
+    		FROM list
+    	<if test='listName != null and listName != ""'><!-- 만약 파라미터에 country가 있다면 SQL문에 WHERE절을 추가합니다. -->
+    		WHERE listName = #{listName}
+    	</if>
+  	</select>
+  	
+  	<select id="testList" resultType="com.example.WebProject.domain.dto.TestDTO">
+  		select * from list
+  	</select>
+
+	<insert id="insertList"  parameterType="com.example.WebProject.domain.dto.TestDTO">
+		INSERT INTO list VALUES (#{listNum}, #{listName})
+	</insert>
+	
+	<update id="updateList"  parameterType="com.example.WebProject.domain.dto.TestDTO">
+		UPDATE list SET listName=#{listName} where listNum=#{listNum}
+		UPDATE list SET listName=? where listNum=?"
+	</update>
+	
+	<delete id="deleteList"  parameterType="int">
+		delete from list where listNum = #{listNum}
+	</delete>
+</mapper>

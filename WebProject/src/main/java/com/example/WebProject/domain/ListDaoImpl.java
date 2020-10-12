@@ -13,43 +13,49 @@ import com.example.WebProject.pNs.Pagination;
 import com.example.WebProject.pNs.Search;
 
 @Repository
-public class ListDao implements ListDaoInterface{
+public class ListDaoImpl implements ListDao2{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 
-
+	@Override
 	public int getTotalCount() {
 		String query = "select count(*) from user";
 		return jdbcTemplate.queryForObject(query, Integer.class);
 	}
 
+	@Override
 	public int getListCount() {
 		String query = "select count(*) from list";
 		return jdbcTemplate.queryForObject(query, Integer.class);
 	}
 
+	@Override
 	public List<ListDto> listForBeanPropertyRowMapper() {
 		String query = "SELECT * FROM list";
 		return jdbcTemplate.query(query, new BeanPropertyRowMapper<ListDto>(ListDto.class));
 	}
 
+	@Override
 	public int insert(ListDto list) {
 		String query = "INSERT INTO list(listNum, listName) VALUES(?,?)";
 		return jdbcTemplate.update(query, list.getListNum(), list.getListName());
 	}
 
+	@Override
 	public void delete(int listNum) {
 		String query = "DELETE FROM list WHERE listNum=?";
 		jdbcTemplate.update(query, listNum);
 	}
 
+	@Override
 	public int update(ListDto list) {
 		String query = "UPDATE list SET listName=? where listNum=?";
 		System.out.println(jdbcTemplate.update(query, list.getListName(), list.getListNum()));
 		return jdbcTemplate.update(query, list.getListName(), list.getListNum());
 	}
 
+	@Override
 	public void selectNum(int listNum) {
 		String query = "SELECT listNum FROM list WHERE listNum=?";
 		jdbcTemplate.update(query, listNum);
@@ -61,6 +67,7 @@ public class ListDao implements ListDaoInterface{
 		return jdbcTemplate.queryForObject(query, Integer.class);
 	}
 
+	@Override
 	public List<ListDto> getBoardList(Search search) throws Exception {
 	  String query = "select listNum, listName from list limit ?, ?";
 	  //System.out.println(search.getStartList());

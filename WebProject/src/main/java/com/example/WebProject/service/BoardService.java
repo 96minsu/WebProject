@@ -15,7 +15,7 @@ import com.example.WebProject.pNs.Search;
 @Transactional
 public interface BoardService {
 	public int getBoardListCnt(Search search) throws Exception;
-	
+
 	public List<ListDto> getBoardList(Search search) throws Exception;
 
 }

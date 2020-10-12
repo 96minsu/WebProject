@@ -20,6 +20,8 @@ import com.example.WebProject.domain.ListDao;
 import com.example.WebProject.domain.ListDto;
 import com.example.WebProject.domain.UserDao;
 import com.example.WebProject.domain.UserDto;
+import com.example.WebProject.domain.dao.TestDAO;
+import com.example.WebProject.domain.dto.TestDTO;
 import com.example.WebProject.pNs.Pagination;
 import com.example.WebProject.pNs.Search;
 import com.example.WebProject.service.BoardService;
@@ -30,13 +32,16 @@ public class LoginController {
 
 	@Autowired
 	private ListDao listDao;
-	
+
 	@Autowired
 	private BoardService boardService;
 
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private TestDAO testDAO;
+	
 	@GetMapping("/")
 	public String login() {
 		return "loginform";
@@ -70,29 +75,30 @@ public class LoginController {
 		return "redirect:/index2";
 	}
 
-	
 	@GetMapping("/index2")
-	public String main(HttpSession session, Model model, 
-			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range,
-			@RequestParam(required = false, defaultValue = "title") String searchType,
-			@RequestParam(required = false) String keyword
+	public String main(HttpSession session, Model model
+			, @RequestParam(required = false, defaultValue = "1") int page
+			, @RequestParam(required = false, defaultValue = "1") int range
+			, @RequestParam(required = false, defaultValue = "title") String searchType
+			, @RequestParam(required = false) String keyword
 			) throws Exception {
-		
+
+		// 전체 게시글 개수
 		Search search = new Search();
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
-
-		// 전체 게시글 개수
+		
 		int listCnt = boardService.getBoardListCnt(search);
+		//search.pageInfo(page, range, listCnt);
 
-		search.pageInfo(page, range, listCnt);
-
-		
 		// Pagination 객체생성
-		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, range, listCnt);
+		//Pagination pagination = new Pagination();
+		//pagination.pageInfo(page, range, listCnt);
 		
+		model.addAttribute("search", search);
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+
 		model.addAttribute("pagination", search);
 		model.addAttribute("boardList", boardService.getBoardList(search));
 
@@ -100,12 +106,13 @@ public class LoginController {
 		if (id == null) {
 			return "redirect:/login";
 		}
-		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper());
+		//model.addAttribute("lists", testDAO.testList());
 		model.addAttribute("id", id);
 		System.out.println(id);
 
-		List<ListDto> listDto = listDao.listForBeanPropertyRowMapper();
-
+		//List<ListDto> listDto = listDao.listForBeanPropertyRowMapper();
+		//List<TestDTO> listDto = testDAO.testList();
+		
 		return "index2";
 	}
 
