@@ -24,7 +24,7 @@ import com.example.WebProject.domain.dao.TestDAO;
 import com.example.WebProject.domain.dto.TestDTO;
 import com.example.WebProject.pNs.Pagination;
 import com.example.WebProject.pNs.Search;
-import com.example.WebProject.service.BoardService;
+//import com.example.WebProject.service.BoardService;
 import com.example.WebProject.service.UserService;
 
 @Controller
@@ -33,8 +33,6 @@ public class LoginController {
 	@Autowired
 	private ListDao listDao;
 
-	@Autowired
-	private BoardService boardService;
 
 	@Autowired
 	private UserService userService;
@@ -88,7 +86,7 @@ public class LoginController {
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
 		
-		int listCnt = boardService.getBoardListCnt(search);
+		//int listCnt = boardService.getBoardListCnt(search);
 		//search.pageInfo(page, range, listCnt);
 
 		// Pagination 객체생성
@@ -100,7 +98,7 @@ public class LoginController {
 		search.setKeyword(keyword);
 
 		model.addAttribute("pagination", search);
-		model.addAttribute("boardList", boardService.getBoardList(search));
+		//model.addAttribute("boardList", boardService.getBoardList(search));
 
 		String id = (String) session.getAttribute("id");
 		if (id == null) {

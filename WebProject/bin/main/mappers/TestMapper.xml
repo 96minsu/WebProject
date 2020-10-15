@@ -23,7 +23,7 @@
   	</select>
 
 	<insert id="insertList"  parameterType="com.example.WebProject.domain.dto.TestDTO">
-		INSERT INTO list VALUES (#{listNum}, #{listName})
+		INSERT INTO list VALUES (#{listNum}, #{listName}, #{regDate})
 	</insert>
 	
 	<update id="updateList"  parameterType="com.example.WebProject.domain.dto.TestDTO">

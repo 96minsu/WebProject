@@ -24,6 +24,19 @@ public class ajaxController {
 	@Autowired
 	ListDao listDao;
 	
+	@GetMapping("/kendo")
+	public String kendoTest() {
+		return "hello";
+	}
+	@GetMapping("/kendo1")
+	public String kendoTest1() {
+		return "kendo1";
+	}
+	@GetMapping("/kendo2")
+	public String kendoTest2() {
+		return "kendo2";
+	}
+	
 	@GetMapping("/button")
 	public String button() {
 		return "button";
@@ -40,8 +53,6 @@ public class ajaxController {
 		}
 		System.out.println(list);
 		System.out.println(list.get(0).getClass().getName());
-		System.out.println(list.getClass().getName());
-		
 		return list;
 	}
 	

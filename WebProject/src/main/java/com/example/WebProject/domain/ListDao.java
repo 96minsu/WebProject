@@ -13,7 +13,7 @@ import com.example.WebProject.pNs.Pagination;
 import com.example.WebProject.pNs.Search;
 
 @Repository
-public class ListDao implements ListDaoInterface{
+public class ListDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
@@ -55,11 +55,11 @@ public class ListDao implements ListDaoInterface{
 		jdbcTemplate.update(query, listNum);
 	}
 
-	@Override
-	public int getBoardListCnt(Search search) throws Exception {
-		String query = "select count(*) as listCnt from list";
-		return jdbcTemplate.queryForObject(query, Integer.class);
-	}
+	/*
+	 * @Override public int getBoardListCnt(Search search) throws Exception { String
+	 * query = "select count(*) as listCnt from list"; return
+	 * jdbcTemplate.queryForObject(query, Integer.class); }
+	 */
 
 	public List<ListDto> getBoardList(Search search) throws Exception {
 	  String query = "select listNum, listName from list limit ?, ?";

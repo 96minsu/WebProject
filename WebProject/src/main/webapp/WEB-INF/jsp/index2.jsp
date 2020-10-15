@@ -7,15 +7,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="stylesheet"
-	href="webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
 <link rel="stylesheet" href="../static/css/style.css">
+
+<link rel="stylesheet"
+	href="https://kendo.cdn.telerik.com/2019.3.917/styles/kendo.default-v2.min.css" />
+<script src="https://kendo.cdn.telerik.com/2019.3.917/js/jquery.min.js"></script>
+<script
+	src="https://kendo.cdn.telerik.com/2019.3.917/js/kendo.all.min.js"></script>
+
 <style>
-h4 {
-	text-align: center;
+html {
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
 }
+</style>
+<title></title>
+
+<style>
 
 form {
 	margin: 0 auto;
@@ -24,24 +35,7 @@ form {
 </style>
 </head>
 <body>
-	<c:url var="index2" value="/index2"></c:url>
-	<script>
-		$(document).on('click', '#btnSearch', function(e) {
-
-			e.preventDefault();
-
-			var url = "${index2}";
-
-			url = url + "?searchType=" + $('#searchType').val();
-
-			url = url + "&keyword=" + $('#keyword').val();
-
-			location.href = url;
-
-			console.log(url);
-
-		});
-	</script>
+	
 	<div class="form-group row justify-content-center">
 		현재 접속한 계정은 ${id}입니다.
 		<button id="addButton" class="btn btn-primary">추가</button>
@@ -58,158 +52,99 @@ form {
 				</tr>
 			</thead>
 			<tbody id="tbody"></tbody>
-
 		</table>
 	</div>
-
+	
 	<table class="tbl paginated" id="tbl"></table>
 
 	<!-- search{s} -->
-
 	<div class="form-group row justify-content-center">
-
 		<div class="w100" style="padding-right: 10px">
-
 			<select class="form-control form-control-sm" name="searchType"
 				id="searchType">
-
 				<option value="title">제목</option>
-
 				<option value="Content">본문</option>
-
 				<option value="reg_id">작성자</option>
-
 			</select>
-
 		</div>
-
 		<div class="w300" style="padding-right: 10px">
-
 			<input type="text" class="form-control form-control-sm"
 				name="keyword" id="keyword">
-
 		</div>
-
 		<div>
-
 			<button class="btn btn-sm btn-primary" name="btnSearch"
 				id="btnSearch">검색</button>
-
 		</div>
-
 	</div>
-
 	<!-- search{e} -->
-
-
-
-
-
-	<!-- pagination{s} 
-
-	<div id="paginationBox">
-
-		<ul class="pagination">
-
-			<c:if test="${pagination.prev}">
-
-				<li class="page-item"><a class="page-link" href="#"
-					onClick="idx">Previous</a></li>
-			</c:if>
-
-
-
-			<c:forEach begin="${pagination.startPage}"
-				end="${pagination.endPage}" var="idx">
-
-				<li
-					class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
-					class="page-link" href="#"
-					onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
-						${idx} </a></li>
-
-			</c:forEach>
-
-
-
-			<c:if test="${pagination.next}">
-
-				<li class="page-item"><a class="page-link" href="#"
-					onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
-
-			</c:if>
-
-		</ul>
-
-	</div>
-
-	<!-- pagination{e} 
-
-
-
-	<script>
-		//이전 버튼 이벤트
-
-		function fn_prev(page, range, rangeSize) {
-
-			var page = ((range - 2) * rangeSize) + 1;
-
-			var range = range - 1;
-
-			var url = "${pageContext.request.contextPath}/index2";
-
-			url = url + "?page=" + page;
-
-			url = url + "&range=" + range;
-
-			location.href = url;
-
-		}
-
-		//페이지 번호 클릭
-
-		function fn_pagination(page, range, rangeSize, searchType, keyword) {
-
-			var url = "${pageContext.request.contextPath}/index2";
-
-			url = url + "?page=" + page;
-
-			url = url + "&range=" + range;
-
-			location.href = url;
-
-		}
-
-		//다음 버튼 이벤트
-
-		function fn_next(page, range, rangeSize) {
-
-			var page = parseInt((range * rangeSize)) + 1;
-
-			var range = parseInt(range) + 1;
-
-			var url = "${pageContext.request.contextPath}/index2";
-
-			url = url + "?page=" + page;
-
-			url = url + "&range=" + range;
-
-			location.href = url;
-
-		}
-	</script>
--->
-
+	
+	
 	<div class="form-group justify-content-center" tex-align:center
 		id="addDiv"></div>
 	<div class="form-group justify-content-center" tex-align:center
 		id="updateDiv"></div>
+	
+	<br>
+	<br>
 
+	<div class="demo-section k-content">
+		<h4>DatePicker:</h4>
+		<input id="datepicker" value="" title="datepicker"  />
+	</div>
+	
+	<div id="grid" style="width: 1200px;" ></div>
+	
+	<script type="text/javascript">
+		$("#datepicker").kendoDatePicker();	
+		
+		$("#grid").kendoGrid({
+			columns:[{title:"Num", field: "listNum", width: 50},
+					 {title:"Name", field: "listName", width: 100},
+					 {title:"Date", field: "regDate", width: 900}],
+		 	dataSource: {
+			 	transport: {
+				 	read: function(options) {
+					 	$.ajax({
+					 		url: "http://localhost:8080/json",
+							dataType: "json",
+							type: "GET",
+							success: function(result) {
+								options.success(result);
+							},
+							error: function(result) {
+								options.error(result);
+							}	
+						 })
+					}
+				},
+			 	pageSize: 10
+			},
+			height: 400,
+			scrollable: true,
+			pageable: {
+	             refresh: true,
+	             pageSizes: true,
+	             buttonCount: 5
+	        },
+			sortable: {
+				mode: "multiple"
+			},
+			groupable: true
+		});
+	</script>
+	<script type="text/javascript">
 
+	</script>
+</div>
+	<!--
+  	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
+  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	
 	<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
+	-->
 	<script src="<c:url value="../static/js/script.js"/>"></script>
 </body>
 </html>

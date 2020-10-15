@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.WebProject.domain.ListDto;
@@ -28,13 +29,15 @@ public class TestController {
 
 	// JSON 데이터로 리스트 나열
 	@RequestMapping("/users")
+	@ResponseBody
 	public List<TestDTO> uesrs(@RequestParam(value = "listName", defaultValue = "") String listName) throws Exception {
 		final TestDTO testDTO = null;
 		final List<TestDTO> userList = testService.selectUsers(testDTO);
 		return userList;
 	}
 
-	@RequestMapping("/test")
+	@RequestMapping("/json")
+	@ResponseBody
 	public List<TestDTO> loginform() throws Exception {
 		List<TestDTO> dto = testService.testList();
 		return dto;

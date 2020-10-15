@@ -1,4 +1,3 @@
-
 $('table').on('click', 'button[id="updateButton"]', function(e){
 		$.ajax({
 			type:'post'
@@ -14,19 +13,10 @@ $('table').on('click', 'button[id="deleteButton"]', function(e){
 		alert("삭제되었습니다.");
 	});
 	
-$(document).ready(function() {
-            $("#keyword").keyup(function() {
-                var k = $(this).val();
-                $("#table > tbody > tr");
-                var temp = $("#table > tbody > tr > td:nth-child(5n+2):contains('" + 1 + "')");
-
-                $(temp).parent().show();
-            })
-        })
-$(document).ready(function(){
+$(function(){
 
 	getDataTable();
-	
+	    
 	$("#addButton").click(function(){
 		$.ajax({
 			type:'post'
@@ -59,13 +49,7 @@ $(document).ready(function(){
 				});
 				$("#tbody").html(html);
 				page();
-				
-				for(key in data) {
-					console.log(data[key].listNum);
-					console.log(data[key].listName);
-				} 
 				console.log(data);
-				console.log(data[1].listNum, data[1].listName);
 		    },
 		    error: function(data) {
 		    	console.log(data);
@@ -166,12 +150,7 @@ $(document).ready(function(){
    		$table.trigger('repaginate');
  		});
 	}
-	
-	
-	
 })
-
-
 
     
 
