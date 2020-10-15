@@ -7,23 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default-v2.min.css"/>
 
 
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default-v2.min.css"/>
 
-<link rel="stylesheet" href="../static/css/style.css">
-
-<link rel="stylesheet"
-	href="https://kendo.cdn.telerik.com/2019.3.917/styles/kendo.default-v2.min.css" />
-<script src="https://kendo.cdn.telerik.com/2019.3.917/js/jquery.min.js"></script>
-<script
-	src="https://kendo.cdn.telerik.com/2019.3.917/js/kendo.all.min.js"></script>
-
-<style>
-html {
-	font-size: 14px;
-	font-family: Arial, Helvetica, sans-serif;
-}
-</style>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.3.915/js/kendo.all.min.js"></script>
 <title></title>
 
 <style>
@@ -86,55 +76,13 @@ form {
 	
 	<br>
 	<br>
-
-	<div class="demo-section k-content">
+	<!-- 	<div class="demo-section k-content">
 		<h4>DatePicker:</h4>
 		<input id="datepicker" value="" title="datepicker"  />
 	</div>
-	
+	-->
 	<div id="grid" style="width: 1200px;" ></div>
 	
-	<script type="text/javascript">
-		$("#datepicker").kendoDatePicker();	
-		
-		$("#grid").kendoGrid({
-			columns:[{title:"Num", field: "listNum", width: 50},
-					 {title:"Name", field: "listName", width: 100},
-					 {title:"Date", field: "regDate", width: 900}],
-		 	dataSource: {
-			 	transport: {
-				 	read: function(options) {
-					 	$.ajax({
-					 		url: "http://localhost:8080/json",
-							dataType: "json",
-							type: "GET",
-							success: function(result) {
-								options.success(result);
-							},
-							error: function(result) {
-								options.error(result);
-							}	
-						 })
-					}
-				},
-			 	pageSize: 10
-			},
-			height: 400,
-			scrollable: true,
-			pageable: {
-	             refresh: true,
-	             pageSizes: true,
-	             buttonCount: 5
-	        },
-			sortable: {
-				mode: "multiple"
-			},
-			groupable: true
-		});
-	</script>
-	<script type="text/javascript">
-
-	</script>
 </div>
 	<!--
   	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

@@ -12,8 +12,11 @@ $('table').on('click', 'button[id="updateButton"]', function(e){
 $('table').on('click', 'button[id="deleteButton"]', function(e){
 		alert("삭제되었습니다.");
 	});
-	
-$(function(){
+
+
+
+//ready function 시작	
+$(document).ready(function(){
 
 	getDataTable();
 	    
@@ -29,6 +32,75 @@ $(function(){
 		});
 	})
 	
+	$("#grid").kendoGrid({
+			columns:[{title:"Num", field: "listNum", width: 200},
+					 {title:"Name", field: "listName", width: 200},
+					 {title:"Date", field: "EventDate", width: 200,
+						 template: "#= kendo.toString(regDate, 'yyyy/MM/dd HH:mm') #"
+					 }	
+	        ],
+		 	dataSource: {
+			 	transport: {
+				 	read: function(data) {
+					 	$.ajax({
+					 		url: "http://localhost:8080/json",
+							dataType: "json",
+							type: "GET",
+							success: function(result) {
+								data.success(result);
+								
+							},
+							error: function(result) {
+								data.error(result);
+							}	
+						 })
+					}
+				},
+			 	pageSize: 10,
+			 	schema: {
+			 		parse: function(data) {
+			 			var events = [];
+		              	for (var i = 0; i < data.length; i++) {
+		                	var event = data[i];
+		                	event.EventDate = kendo.toString(new Date(event.regDate), 'yyyy/MM/dd');
+		                	console.log("event = ", kendo.toString(new Date(event.regDate), 'yyyy/MM/dd') ); 
+		                	events.push(event);
+		                }
+			 			console.log("events확인");
+			 			console.log(events);
+			 			return events;
+			 		},
+			 		model: {
+			 			id: "listNum",
+			 			fields: {
+			 				listNum: {editable: false, nullable: true },
+			 				listName: { validation: {required: true}} ,
+			 				regDate: {type: "date"},
+			 				EventDate: {type: "date"}
+			 			}
+			 		}	
+			 	}	
+			},
+			height: 400,
+			scrollable: true,
+			pageable: {
+	             refresh: true,
+	             pageSizes: true,
+	             buttonCount: 5
+	        },
+	        //필터
+	        filterable: {
+                extra: false,
+                mode: "row"
+            },
+            //정렬
+			sortable: {
+				mode: "multiple"
+			},
+			//그룹
+			groupable: true
+		});
+		
 
 	function getDataTable() {
 		$.ajax({
@@ -150,7 +222,47 @@ $(function(){
    		$table.trigger('repaginate');
  		});
 	}
-})
+});
+// ready function 끝
 
+// betweenFilter 시작
+function betweenFilter(args) {
+            var filterCell = args.element.parents(".k-filtercell");
+			
+            filterCell.empty();
+            filterCell.html('<span style="display:flex; justify-content:center;"><span>From:</span><input  class="start-date"/><span>To:</span><input  class="end-date"/></span>');
+
+            $(".start-date", filterCell).kendoDatePicker({
+                change: function (e) {
+                    var startDate = e.sender.value(),
+                        endDate = $("input.end-date", filterCell).data("kendoDatePicker").value(),        
+                        dataSource = $("#grid").data("kendoGrid").dataSource;
+						
+                    if (startDate & endDate) {
+                        var filter = { logic: "and", filters: [] };
+                        filter.filters.push({ field: "regDate", operator: "gte", value: startDate });
+                        filter.filters.push({ field: "regDate", operator: "lte", value: endDate });
+                        dataSource.filter(filter);
+                    }
+                }
+            });
+           
+            
+            $(".end-date", filterCell).kendoDatePicker({
+                change: function (e) {
+                    var startDate = $("input.start-date", filterCell).data("kendoDatePicker").value(),
+                        endDate = e.sender.value(),
+                        dataSource = $("#grid").data("kendoGrid").dataSource;
+
+                    if (startDate & endDate) {
+                        var filter = { logic: "and", filters: [] };
+                        filter.filters.push({ field: "regDate", operator: "gte", value: startDate });
+                        filter.filters.push({ field: "regDate", operator: "lte", value: endDate });
+                        dataSource.filter(filter);
+                    }
+                }
+            });
+        }
+// betweenFilter 끝
     
 
