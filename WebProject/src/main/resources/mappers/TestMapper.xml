@@ -28,7 +28,6 @@
 	
 	<update id="updateList"  parameterType="com.example.WebProject.domain.dto.TestDTO">
 		UPDATE list SET listName=#{listName} where listNum=#{listNum}
-		UPDATE list SET listName=? where listNum=?"
 	</update>
 	
 	<delete id="deleteList"  parameterType="int">

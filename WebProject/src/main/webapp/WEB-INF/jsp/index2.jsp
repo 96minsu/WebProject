@@ -25,6 +25,12 @@ form {
 </style>
 </head>
 <body>
+	현재 접속한 계정은 ${id}입니다.
+	<div id="grid" style="width: 1200px;" ></div>
+	<textarea id="editor" style="width: 1200px;"></textarea>
+	
+	<br>
+	<br>
 	
 	<div class="form-group row justify-content-center">
 		현재 접속한 계정은 ${id}입니다.
@@ -74,16 +80,13 @@ form {
 	<div class="form-group justify-content-center" tex-align:center
 		id="updateDiv"></div>
 	
-	<br>
-	<br>
-	<!-- 	<div class="demo-section k-content">
-		<h4>DatePicker:</h4>
-		<input id="datepicker" value="" title="datepicker"  />
-	</div>
-	-->
-	<div id="grid" style="width: 1200px;" ></div>
-	
 </div>
+<script type="text/javascript">
+	
+</script>
+
+
+
 	<!--
   	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   	<link rel="stylesheet" href="/resources/demos/style.css">

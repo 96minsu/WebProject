@@ -19,7 +19,7 @@ $('table').on('click', 'button[id="deleteButton"]', function(e){
 $(document).ready(function(){
 
 	getDataTable();
-	    
+
 	$("#addButton").click(function(){
 		$.ajax({
 			type:'post'
@@ -31,56 +31,118 @@ $(document).ready(function(){
 			}
 		});
 	})
+
+
+	function jsonDATA() {
+		var jsonData;
+		$.ajax({
+			url:"http://localhost:8080/json",
+			dataType:"json",
+			type: "GET",
+			async : false,
+			success: function(data) {
+				console.log('data = ', data);
+				jsonData = data;
+			}
+		});
+		
+		return jsonData;
+	}
+	
+	var jsonData = jsonDATA();
+	console.log("jsonData = ", jsonData);
+
+	// Custom logic start.
+	var jsonDataNextID = jsonData.length + 1;
+	function getIndexById(id) {
+		var idx,
+		l = jsonData.length;
+			for (var j=0; j < l; j++) {
+				if (jsonData[j].listNum == id) {
+               	return j;
+            }
+        }
+		return null;
+    }
+    // Custom logic end.
+	
+	// dataSource
+	var dataSource = new kendo.data.DataSource({
+		transport: {
+			read: {
+				url:"/json",
+				type:"post",
+				dataType:"json"
+			},
+			//function(e) {
+			//	e.success(jsonData);
+			//},
+			/*
+			<form action="/add" method="post">
+				<input type="number" name="listNum" placeholder="number"> 
+				<input type="text" name="listName" placeholder="name">
+				<button type="submit" class="btn btn-danger" id="saveButton">추가하기</button>
+			</form>
+			*/
+			create: {
+				url:"/add",
+				type:"post",
+				dataType:"json"
+			},
+			update: {
+				url:"/update",
+				type:"post",
+				dataType:"json"
+			},
+			destroy: {
+				url:"/delete",
+				type:"get",
+				dataType:"json"
+			}
+		},
+		error: function(e) {
+			console.log("Status: " + e.status + "; Error message: " + e.errorThrown);
+		},
+		pageSize: 10,
+		schema: {
+			parse: function(data) {
+				var events = [];
+		        for (var i = 0; i < data.length; i++) {
+		        	var event = data[i];
+		            event.EventDate = kendo.toString(new Date(event.regDate), 'yyyy/MM/dd');
+		            // console.log("event = ", kendo.toString(new Date(event.regDate), 'yyyy/MM/dd') ); 
+		            events.push(event);
+		        }
+			 	return events;
+			},
+			model: {
+					id: "listNum",
+					fields: {
+			 		listNum: {nullable:true},
+			 		listName: { validation: {required: true}, type:"string"},
+			 		regDate: {editable: false, type: "date"},
+			 		EventDate: {type: "date"}
+			 	}
+			}	
+		}	
+	});	
+	$("#editor").kendoEditor({
+  		resizable: {
+    		content: true,
+    		toolbar: true,
+  		},
+	});	
 	
 	$("#grid").kendoGrid({
+			dataSource: dataSource,
+			toolbar: ["create"],
 			columns:[{title:"Num", field: "listNum", width: 200},
 					 {title:"Name", field: "listName", width: 200},
 					 {title:"Date", field: "EventDate", width: 200,
-						 template: "#= kendo.toString(regDate, 'yyyy/MM/dd HH:mm') #"
-					 }	
+						 template: "#= kendo.toString(regDate, 'yyyy/MM/dd HH:mm') #"},
+					 {command: ["edit", "destroy"], title: "&nbsp;", width: "200px"}
 	        ],
-		 	dataSource: {
-			 	transport: {
-				 	read: function(data) {
-					 	$.ajax({
-					 		url: "http://localhost:8080/json",
-							dataType: "json",
-							type: "GET",
-							success: function(result) {
-								data.success(result);
-								
-							},
-							error: function(result) {
-								data.error(result);
-							}	
-						 })
-					}
-				},
-			 	pageSize: 10,
-			 	schema: {
-			 		parse: function(data) {
-			 			var events = [];
-		              	for (var i = 0; i < data.length; i++) {
-		                	var event = data[i];
-		                	event.EventDate = kendo.toString(new Date(event.regDate), 'yyyy/MM/dd');
-		                	console.log("event = ", kendo.toString(new Date(event.regDate), 'yyyy/MM/dd') ); 
-		                	events.push(event);
-		                }
-			 			console.log("events확인");
-			 			console.log(events);
-			 			return events;
-			 		},
-			 		model: {
-			 			id: "listNum",
-			 			fields: {
-			 				listNum: {editable: false, nullable: true },
-			 				listName: { validation: {required: true}} ,
-			 				regDate: {type: "date"},
-			 				EventDate: {type: "date"}
-			 			}
-			 		}	
-			 	}	
-			},
+	        editable: "inline",
 			height: 400,
 			scrollable: true,
 			pageable: {
@@ -121,7 +183,6 @@ $(document).ready(function(){
 				});
 				$("#tbody").html(html);
 				page();
-				console.log(data);
 		    },
 		    error: function(data) {
 		    	console.log(data);
@@ -225,44 +286,5 @@ $(document).ready(function(){
 });
 // ready function 끝
 
-// betweenFilter 시작
-function betweenFilter(args) {
-            var filterCell = args.element.parents(".k-filtercell");
-			
-            filterCell.empty();
-            filterCell.html('<span style="display:flex; justify-content:center;"><span>From:</span><input  class="start-date"/><span>To:</span><input  class="end-date"/></span>');
-
-            $(".start-date", filterCell).kendoDatePicker({
-                change: function (e) {
-                    var startDate = e.sender.value(),
-                        endDate = $("input.end-date", filterCell).data("kendoDatePicker").value(),        
-                        dataSource = $("#grid").data("kendoGrid").dataSource;
-						
-                    if (startDate & endDate) {
-                        var filter = { logic: "and", filters: [] };
-                        filter.filters.push({ field: "regDate", operator: "gte", value: startDate });
-                        filter.filters.push({ field: "regDate", operator: "lte", value: endDate });
-                        dataSource.filter(filter);
-                    }
-                }
-            });
-           
-            
-            $(".end-date", filterCell).kendoDatePicker({
-                change: function (e) {
-                    var startDate = $("input.start-date", filterCell).data("kendoDatePicker").value(),
-                        endDate = e.sender.value(),
-                        dataSource = $("#grid").data("kendoGrid").dataSource;
-
-                    if (startDate & endDate) {
-                        var filter = { logic: "and", filters: [] };
-                        filter.filters.push({ field: "regDate", operator: "gte", value: startDate });
-                        filter.filters.push({ field: "regDate", operator: "lte", value: endDate });
-                        dataSource.filter(filter);
-                    }
-                }
-            });
-        }
-// betweenFilter 끝
     
 
