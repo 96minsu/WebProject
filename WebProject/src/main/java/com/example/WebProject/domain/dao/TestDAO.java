@@ -13,6 +13,8 @@ public interface TestDAO {
 	
 	public List<TestDTO> testList() throws Exception;
 	
+	public TestDTO listDetail(int listNum) throws Exception;
+	
 	public void insertList(TestDTO testDTO) throws Exception;
 	
 	public void deleteList(int num) throws Exception;

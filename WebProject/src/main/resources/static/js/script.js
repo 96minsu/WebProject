@@ -31,6 +31,18 @@ $(document).ready(function(){
 			}
 		});
 	})
+	
+	$("#detailButton").click(function(){
+		$.ajax({
+			type:'GET'
+			,url:'/detail/#=listNum#'
+			,dataType:'html'
+			,success:function(data){
+				$("#detailDiv").html(data);
+				
+			}
+		});
+	})
 
 
 	function jsonDATA() {
@@ -116,10 +128,11 @@ $(document).ready(function(){
 			 	return events;
 			},
 			model: {
-					id: "listNum",
-					fields: {
+				id: "listNum",
+				fields: {
 			 		listNum: {nullable:true},
-			 		listName: { validation: {required: true}, type:"string"},
+			 		listName: {},
+			 		//ResumeFileUrl: {validation: {required: true}, type:"string", template:},
 			 		regDate: {editable: false, type: "date"},
 			 		EventDate: {type: "date"}
 			 	}
@@ -135,12 +148,24 @@ $(document).ready(function(){
 	
 	$("#grid").kendoGrid({
 			dataSource: dataSource,
+			/*dataBound: function(e) {
+				$("input[type='file']").kendoUpload({
+	                async: {
+	                    saveUrl: "/save",
+	                    removeUrl: "/remove",
+	                    autoUpload: true
+	                }
+	           	});
+			},*/
 			toolbar: ["create"],
-			columns:[{title:"Num", field: "listNum", width: 200},
-					 {title:"Name", field: "listName", width: 200},
-					 {title:"Date", field: "EventDate", width: 200,
-						 template: "#= kendo.toString(regDate, 'yyyy/MM/dd HH:mm') #"},
-					 {command: ["edit", "destroy"], title: "&nbsp;", width: "200px"}
+			columns:[{title:"Num", field:"listNum", width:200},
+					 {title:"Name", field:"listName", width:200,
+					 template:"<a class='k-button' id='detailButton' href='/detail/#=listNum#'>#=listName#</a>"},
+				   //{title:"Resume", field:"ResumeFileUrl", width:"80px",
+				   // 	 template:'<button class="k-button" onClick="uploadFiles(#=fileName#)">Upload<br/>Files</button>' },
+					 {title:"Date", field:"EventDate", width:200,
+						 template:"#= kendo.toString(regDate, 'yyyy/MM/dd HH:mm') #"},
+					 {command:["edit", "destroy"], title:"Action", width: "200px"}
 	        ],
 	        editable: "inline",
 			height: 400,
@@ -283,6 +308,8 @@ $(document).ready(function(){
    		$table.trigger('repaginate');
  		});
 	}
+	
+
 });
 // ready function 끝
 

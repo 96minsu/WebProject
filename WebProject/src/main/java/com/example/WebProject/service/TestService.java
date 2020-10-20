@@ -14,6 +14,8 @@ public interface TestService {
 	
 	public List<TestDTO> testList() throws Exception;
 	
+	public TestDTO listDetailService(int listNum) throws Exception;
+	
 	public void write(TestDTO dto) throws Exception;
 	
 	public void modify(TestDTO dto) throws Exception;

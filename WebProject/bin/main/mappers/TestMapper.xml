@@ -18,11 +18,15 @@
     	</if>
   	</select>
   	
+  	<select id="listDetail" parameterType="int" resultType="com.example.WebProject.domain.dto.TestDTO">
+  		select * from list where listNum=#{listNum}
+  	</select>
+  	
   	<select id="testList" resultType="com.example.WebProject.domain.dto.TestDTO">
   		select * from list
   	</select>
 
-	<insert id="insertList"  parameterType="com.example.WebProject.domain.dto.TestDTO">
+	<insert id="insertList"  parameterType="com.example.WebProject.domain.dto.TestDTO" useGeneratedKeys="true">
 		INSERT INTO list VALUES (#{listNum}, #{listName}, #{regDate})
 	</insert>
 	

@@ -6,7 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,6 +67,12 @@ public class TestController {
 		testService.remove(listNum);
 		
 		return "redirect:/index2";
+	}
+	
+	@GetMapping("/detail/{listNum}")
+	public String listDetail(@PathVariable int listNum, Model model) throws Exception {
+		model.addAttribute("detail", testService.listDetailService(listNum));
+		return "detailform";
 	}
 
 }

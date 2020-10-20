@@ -7,17 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default-v2.min.css"/>
+<link rel="stylesheet"
+	href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default-v2.min.css" />
 
 
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default-v2.min.css"/>
+<link rel="stylesheet"
+	href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default-v2.min.css" />
 
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2020.3.915/js/kendo.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script
+	src="https://kendo.cdn.telerik.com/2020.3.915/js/kendo.all.min.js"></script>
 <title></title>
 
 <style>
-
 form {
 	margin: 0 auto;
 	width: 250px;
@@ -26,12 +28,36 @@ form {
 </head>
 <body>
 	현재 접속한 계정은 ${id}입니다.
-	<div id="grid" style="width: 1200px;" ></div>
+	<div id="grid" style="width: 1200px;"></div>
+
+	<div class="form-group justify-content-center" tex-align:center
+		id="detailDiv"></div>
+	
+
+	<div class="demo-section k-content">
+		<input name="files" id="files" type="file" />
+
+
+		<script>
+     
+            $("#files").kendoUpload({
+                async: {
+                    saveUrl: "/save",
+                    removeUrl: "/remove",
+                    autoUpload: true
+                }
+            });
+       
+    	</script>
+	</div>
+
+
+
 	<textarea id="editor" style="width: 1200px;"></textarea>
-	
+
 	<br>
 	<br>
-	
+
 	<div class="form-group row justify-content-center">
 		현재 접속한 계정은 ${id}입니다.
 		<button id="addButton" class="btn btn-primary">추가</button>
@@ -50,7 +76,7 @@ form {
 			<tbody id="tbody"></tbody>
 		</table>
 	</div>
-	
+
 	<table class="tbl paginated" id="tbl"></table>
 
 	<!-- search{s} -->
@@ -73,17 +99,17 @@ form {
 		</div>
 	</div>
 	<!-- search{e} -->
-	
-	
+
+
 	<div class="form-group justify-content-center" tex-align:center
 		id="addDiv"></div>
 	<div class="form-group justify-content-center" tex-align:center
 		id="updateDiv"></div>
-	
-</div>
-<script type="text/javascript">
-	
-</script>
+
+	</div>
+	<script type="text/javascript">
+		
+	</script>
 
 
 

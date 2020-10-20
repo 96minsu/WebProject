@@ -23,31 +23,33 @@ public class ajaxController {
 
 	@Autowired
 	ListDao listDao;
-	
+
 	@GetMapping("/kendo")
 	public String kendoTest() {
 		return "hello";
 	}
+
 	@GetMapping("/kendo1")
 	public String kendoTest1() {
 		return "kendo1";
 	}
+
 	@GetMapping("/kendo2")
 	public String kendoTest2() {
 		return "kendo2";
 	}
-	
+
 	@GetMapping("/button")
 	public String button() {
 		return "button";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/jsonData")
 	public List jsonData() {
 
 		List<ListDto> list = new ArrayList<ListDto>();
-		
+
 		for (int i = 0; i < listDao.getListCount(); i++) {
 			list.add(listDao.listForBeanPropertyRowMapper().get(i));
 		}
@@ -55,17 +57,17 @@ public class ajaxController {
 		System.out.println(list.get(0).getClass().getName());
 		return list;
 	}
-	
+
 	@PostMapping("/addform")
 	public String goAddform() {
 		return "addform_ajax";
 	}
-	
+
 	@PostMapping("/updateform")
 	public String goUpdateform(Model model) {
 		model.addAttribute("lists", listDao.listForBeanPropertyRowMapper().get(0));
 		System.out.println(listDao.listForBeanPropertyRowMapper().get(0));
-		
+
 		return "updateform_ajax";
 	}
 

@@ -16,7 +16,6 @@ public class TestDTO {
 	private int listNum;
     private String listName;
     private Date regDate;
-    
     //SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
     //private String  time1 = format1.format(regDate); 
 	

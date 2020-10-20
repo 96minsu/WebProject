@@ -72,8 +72,6 @@ dependencies {
   	compile('commons-io:commons-io:2.4')
   	compile('ortg.assertj:assertj-core:1.0.0')
 
-
-
 }
 
 test {

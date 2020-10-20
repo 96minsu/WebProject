@@ -28,6 +28,11 @@ public class TestServiceImpl implements TestService{
 	}
 	
 	@Override
+	public TestDTO listDetailService(int listNum) throws Exception {
+		return testDAO.listDetail(listNum);
+	}
+	
+	@Override
 	public void write(TestDTO testDTO) throws Exception {
 		testDAO.insertList(testDTO);
 	}
