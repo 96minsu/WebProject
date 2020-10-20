@@ -72,6 +72,10 @@ dependencies {
   	compile('commons-io:commons-io:2.4')
   	compile('ortg.assertj:assertj-core:1.0.0')
 
+	// 파일 업로드할 때 받음
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+	compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
+	
 }
 
 test {

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.WebProject.domain.dao.TestDAO;
+import com.example.WebProject.domain.dto.FileVO;
 import com.example.WebProject.domain.dto.TestDTO;
 
 @Service
@@ -17,6 +18,15 @@ public class TestServiceImpl implements TestService{
 	@Autowired
 	private TestDAO testDAO;
 	
+	public TestServiceImpl( ) {
+		setNameSpace("com.example.WebProject.domain.dao.TestDAO");
+	}
+	
+	private void setNameSpace(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public List<TestDTO> selectUsers(TestDTO testDTO) throws Exception {
 		return testDAO.selectUsers(testDTO);
@@ -45,5 +55,15 @@ public class TestServiceImpl implements TestService{
 	@Override
 	public void remove(int listNum) throws Exception {
 		testDAO.deleteList(listNum);
+	}
+	
+	@Override
+	public int insertFileService(FileVO file) throws Exception {
+		return testDAO.insertFile(file);
+	}
+	
+	@Override
+	public FileVO fileDetailService(int listNum) throws Exception{
+		return testDAO.fileDetail(listNum);
 	}
 }

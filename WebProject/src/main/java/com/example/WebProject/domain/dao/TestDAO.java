@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.WebProject.domain.dto.FileVO;
 import com.example.WebProject.domain.dto.TestDTO;
 
 @Mapper
@@ -20,4 +21,9 @@ public interface TestDAO {
 	public void deleteList(int num) throws Exception;
 	
 	public void updateList(TestDTO testDTO) throws Exception;
+	
+	public int insertFile(FileVO file) throws Exception;
+	
+	public FileVO fileDetail(int listNum) throws Exception;
+
 }

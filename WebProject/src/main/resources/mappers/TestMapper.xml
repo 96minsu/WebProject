@@ -37,4 +37,13 @@
 	<delete id="deleteList"  parameterType="int">
 		delete from list where listNum = #{listNum}
 	</delete>
+	
+	<insert id="insertFile" parameterType="com.example.WebProject.domain.dto.FileVO">
+		insert into files (fno, listNum, filename, fileOriName, fileurl)
+		values (#{fno},#{listNum},#{filename},#{fileOriName},#{fileUrl})
+	</insert>
+	
+	<select id="fileDetail" parameterType="int" resultType="com.example.WebProject.domain.dto.FileVO">
+		select * from files where listNum=#{listNum}
+	</select>
 </mapper>

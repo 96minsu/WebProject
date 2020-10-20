@@ -132,6 +132,7 @@ $(document).ready(function(){
 				fields: {
 			 		listNum: {nullable:true},
 			 		listName: {},
+			 		fileName: {},
 			 		//ResumeFileUrl: {validation: {required: true}, type:"string", template:},
 			 		regDate: {editable: false, type: "date"},
 			 		EventDate: {type: "date"}
@@ -161,6 +162,11 @@ $(document).ready(function(){
 			columns:[{title:"Num", field:"listNum", width:200},
 					 {title:"Name", field:"listName", width:200,
 					 template:"<a class='k-button' id='detailButton' href='/detail/#=listNum#'>#=listName#</a>"},
+					 //{title:"File", field:"fileName", width:200,
+					 //template:"<button>Upload</button>"},
+					 {command:{ text:"zzz", click:"listNum" }, title:"File", width:200},
+					 //template:"<input type='button' class='k-button' name='ㅋㅋㅋ' value='ㅋㅋㅋ'/>"},
+					// template:"<input type='button' class='k-button' name='Upload' value='Upload'/>"},
 				   //{title:"Resume", field:"ResumeFileUrl", width:"80px",
 				   // 	 template:'<button class="k-button" onClick="uploadFiles(#=fileName#)">Upload<br/>Files</button>' },
 					 {title:"Date", field:"EventDate", width:200,
@@ -201,7 +207,8 @@ $(document).ready(function(){
 					
 					html += '<tr>';
 					html += '<td class="listtd">' + value.listNum + '</td>';
-					html += '<td class="listtd">' + value.listName + '</td>';
+					//html += '<td class="listtd"><a class="k-button" id="detailButton" href="/detail/'+value.listNum+'>+value.listName+'</a></td>';
+					html += '<td class="listtd"><a class="k-button" href="/detail2/'+value.listNum+'">' + value.listName + '</a></td>';
 					html += '<td class="listtd">' + '<button id="updateButton" class="btn btn-success">수정</button>'
 					+ '<button id="deleteButton" onclick="location.href=\'/delete?listNum='+value.listNum+'\'" class="btn btn-danger">삭제</button>' + '</td>';		
 					html += '</tr>';
