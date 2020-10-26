@@ -21,6 +21,10 @@
    		<h3>Date</h3>
         <p>${detail.regDate}</p>
       </div>
+      <div class="form-group"> <!-- 첨부파일 다운로드 -->
+        <h3>첨부파일</h3>
+        <p><a href="/fileDown/${files.listNum}">${files.fileOriName}</a></p>
+      </div>
       
       <!-- <button type="submit" class="btn btn-primary">작성</button> -->
     </form>

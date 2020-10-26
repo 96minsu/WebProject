@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.WebProject.domain.ListDao;
 import com.example.WebProject.domain.ListDto;
 import com.example.WebProject.domain.UserDao;
+import com.example.WebProject.domain.dto.TestDTO;
 
 @Controller
 public class ajaxController {
@@ -48,13 +49,8 @@ public class ajaxController {
 	@GetMapping("/jsonData")
 	public List jsonData() {
 
-		List<ListDto> list = new ArrayList<ListDto>();
+		List<ListDto> list = listDao.listForBeanPropertyRowMapper();
 
-		for (int i = 0; i < listDao.getListCount(); i++) {
-			list.add(listDao.listForBeanPropertyRowMapper().get(i));
-		}
-		System.out.println(list);
-		System.out.println(list.get(0).getClass().getName());
 		return list;
 	}
 

@@ -15,6 +15,8 @@ public interface TestService {
 	
 	public List<TestDTO> testList() throws Exception;
 	
+	public List<TestDTO> testAllList() throws Exception;
+	
 	public TestDTO listDetailService(int listNum) throws Exception;
 	
 	public void write(TestDTO dto) throws Exception;
@@ -26,4 +28,18 @@ public interface TestService {
 	public int insertFileService(FileVO file) throws Exception;
 	
 	public FileVO fileDetailService(int listNum) throws Exception;
+	
+	public int countDate() throws Exception;
+
+	public List<TestDTO> zzz() throws Exception;
+	
+	public List<TestDTO> regdate() throws Exception;
+	
+	
+	
+	/*
+	 * public int insertFileService2(TestDTO file) throws Exception;
+	 * 
+	 * public TestDTO fileDetailService2(int listNum) throws Exception;
+	 */
 }

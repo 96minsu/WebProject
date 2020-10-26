@@ -52,44 +52,76 @@ public class TestController {
 
 	@RequestMapping("/json")
 	@ResponseBody
-	public List<TestDTO> loginform() throws Exception {
+	public List<TestDTO> json() throws Exception {
 		List<TestDTO> dto = testService.testList();
 		return dto;
 	}
 
+	@RequestMapping("/jsonAll")
+	@ResponseBody
+	public List<TestDTO> jsonAll() throws Exception {
+		List<TestDTO> dto = testService.testAllList();
+		return dto;
+	}
+	
+	@RequestMapping("/dateJson")
+	@ResponseBody
+	public int countDate() throws Exception {
+		int dto = testService.countDate();
+		return dto;
+	}
+	
+	@RequestMapping("/zzz")
+	@ResponseBody
+	public List<TestDTO> zzz() throws Exception {
+		List<TestDTO> dto = testService.zzz();
+		return dto;
+	}
+	
+	@GetMapping("/regdate")
+	@ResponseBody
+	public List<TestDTO> regdate() throws Exception {
+		System.out.println(testService.regdate());
+		List<TestDTO> dto = testService.regdate();
+		return dto;
+	}
+
+	/*
+	 * @PostMapping("/add") public String insertList(TestDTO testDTO,
+	 * HttpServletRequest request, @RequestPart MultipartFile files) throws
+	 * Exception { FileVO file = new FileVO(); System.out.println(files);
+	 * System.out.println(testDTO); System.out.println(request); if
+	 * (files.isEmpty()) { testService.write(testDTO); } else { String fileName =
+	 * files.getOriginalFilename(); String fileNameExtension =
+	 * FilenameUtils.getExtension(fileName).toLowerCase(); File destinationFile;
+	 * String destinationFileName; String fileUrl =
+	 * "C:/Users/JK코어/Desktop/project/git 저장소/WebProject/WebProject/src/main/webapp/WEB-INF/uploadFiles/"
+	 * ;
+	 * 
+	 * do { destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." +
+	 * fileNameExtension; destinationFile = new File(fileUrl + destinationFileName);
+	 * } while (destinationFile.exists());
+	 * 
+	 * destinationFile.getParentFile().mkdirs(); files.transferTo(destinationFile);
+	 * 
+	 * testService.write(testDTO);
+	 * 
+	 * file.setListNum(testDTO.getListNum()); file.setFilename(destinationFileName);
+	 * file.setFileOriName(fileName); file.setFileUrl(fileUrl);
+	 * 
+	 * testService.insertFileService(file); }
+	 * 
+	 * System.out.println(testDTO.getListName());
+	 * 
+	 * return "redirect:/index2"; }
+	 */
+
+	
+	// Current request is not a multipart request <- add때문에 생기는 듯
 	@PostMapping("/add")
-	public String insertList(TestDTO testDTO, HttpServletRequest request, @RequestPart MultipartFile files)
-			throws Exception {
-		FileVO file = new FileVO();
+	public String insertList(TestDTO testDTO) throws Exception {
 
-		if (files.isEmpty()) {
-			testService.write(testDTO);
-		} else {
-			String fileName = files.getOriginalFilename();
-			String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
-			File destinationFile;
-			String destinationFileName;
-			String fileUrl = "C:/Users/JK코어/Desktop/project/git 저장소/WebProject/WebProject/src/main/webapp/WEB-INF/uploadFiles/";
-
-			do {
-				destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
-				destinationFile = new File(fileUrl + destinationFileName);
-			} while (destinationFile.exists());
-
-			destinationFile.getParentFile().mkdirs();
-			files.transferTo(destinationFile);
-
-			testService.write(testDTO);
-
-			file.setListNum(testDTO.getListNum());
-			file.setFilename(destinationFileName);
-			file.setFileOriName(fileName);
-			file.setFileUrl(fileUrl);
-
-			testService.insertFileService(file);
-		}
-
-		System.out.println(testDTO.getListName());
+		testService.write(testDTO);
 
 		return "redirect:/index2";
 	}
@@ -113,9 +145,10 @@ public class TestController {
 	@GetMapping("/detail/{listNum}")
 	public String listDetail(@PathVariable int listNum, Model model) throws Exception {
 		model.addAttribute("detail", testService.listDetailService(listNum));
+		model.addAttribute("files", testService.fileDetailService(listNum));
 		return "detailform";
 	}
-	
+
 	@GetMapping("/detail2/{listNum}")
 	public String listDetail2(@PathVariable int listNum, Model model) throws Exception {
 		model.addAttribute("detail", testService.listDetailService(listNum));
@@ -125,67 +158,67 @@ public class TestController {
 	}
 
 	@RequestMapping("fileDown/{listNum}")
-	private void fileDown(@PathVariable int listNum, HttpServletRequest request,
-				HttpServletResponse response) throws Exception{
-		
+	private void fileDown(@PathVariable int listNum, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
 		request.setCharacterEncoding("UTF-8");
 		FileVO fileVO = testService.fileDetailService(listNum);
-		
+
 		try {
 			String fileUrl = fileVO.getFileUrl();
 			fileUrl += "/";
 			String savePath = fileUrl;
 			String fileName = fileVO.getFilename();
-			
+
 			String oriFileName = fileVO.getFileOriName();
 			InputStream in = null;
 			OutputStream os = null;
 			File file = null;
 			boolean skip = false;
 			String client = "";
-			
+
 			try {
 				file = new File(savePath, fileName);
 				in = new FileInputStream(file);
 			} catch (Exception e) {
 				skip = true;
 			}
-			
+
 			client = request.getHeader("User-Agent");
-			
+
 			response.reset();
 			response.setContentType("apllication/otect-stream");
 			response.setHeader("Content-Description", "JSP Generated Data");
-			
+
 			if (!skip) {
 				if (client.indexOf("MSIE") != -1) {
-                    response.setHeader("Content-Disposition", "attachment; filename=\""
-                            + java.net.URLEncoder.encode(oriFileName, "UTF-8").replaceAll("\\+", "\\ ") + "\"");
-                    // IE 11 이상.
-                } else if (client.indexOf("Trident") != -1) {
-                    response.setHeader("Content-Disposition", "attachment; filename=\""
-                            + java.net.URLEncoder.encode(oriFileName, "UTF-8").replaceAll("\\+", "\\ ") + "\"");
-                } else {
-                    // 한글 파일명 처리
-                    response.setHeader("Content-Disposition",
-                            "attachment; filename=\"" + new String(oriFileName.getBytes("UTF-8"), "ISO8859_1") + "\"");
-                    response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
-                }
-                response.setHeader("Content-Length", "" + file.length());
-                os = response.getOutputStream();
-                byte b[] = new byte[(int) file.length()];
-                int leng = 0;
-                while ((leng = in.read(b)) > 0) {
-                    os.write(b, 0, leng);
-                }
-            } else {
-                response.setContentType("text/html;charset=UTF-8");
-                System.out.println("<script language='javascript'>alert('파일을 찾을 수 없습니다');history.back();</script>");
-            }
-            in.close();
-            os.close();
-        } catch (Exception e) {
-            System.out.println("ERROR : " + e.getMessage());
-        }
+					response.setHeader("Content-Disposition", "attachment; filename=\""
+							+ java.net.URLEncoder.encode(oriFileName, "UTF-8").replaceAll("\\+", "\\ ") + "\"");
+					// IE 11 이상.
+				} else if (client.indexOf("Trident") != -1) {
+					response.setHeader("Content-Disposition", "attachment; filename=\""
+							+ java.net.URLEncoder.encode(oriFileName, "UTF-8").replaceAll("\\+", "\\ ") + "\"");
+				} else {
+					// 한글 파일명 처리
+					response.setHeader("Content-Disposition",
+							"attachment; filename=\"" + new String(oriFileName.getBytes("UTF-8"), "ISO8859_1") + "\"");
+					response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
+				}
+				response.setHeader("Content-Length", "" + file.length());
+				os = response.getOutputStream();
+				byte b[] = new byte[(int) file.length()];
+				int leng = 0;
+				while ((leng = in.read(b)) > 0) {
+					os.write(b, 0, leng);
+				}
+			} else {
+				response.setContentType("text/html;charset=UTF-8");
+				System.out.println("<script language='javascript'>alert('파일을 찾을 수 없습니다');history.back();</script>");
+			}
+			in.close();
+			os.close();
+		} catch (Exception e) {
+			System.out.println("ERROR : " + e.getMessage());
+		}
 	}
 }

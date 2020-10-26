@@ -17,6 +17,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script
 	src="https://kendo.cdn.telerik.com/2020.3.915/js/kendo.all.min.js"></script>
+	
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <title></title>
 
 <style>
@@ -27,6 +29,8 @@ form {
 </style>
 </head>
 <body>
+	<div id="container" style="width:550px; height:400px; margin: 0 auto"></div>
+
 	현재 접속한 계정은 ${id}입니다.
 	<div id="grid" style="width: 1200px;"></div>
 
@@ -34,7 +38,7 @@ form {
 		id="detailDiv"></div>
 	
 
-	<div class="demo-section k-content">
+<!-- 	<div class="demo-section k-content">
 		<input name="files" id="files" type="file" />
 
 
@@ -50,7 +54,7 @@ form {
        
     	</script>
 	</div>
-
+ -->
 
 
 	<textarea id="editor" style="width: 1200px;"></textarea>
@@ -79,26 +83,7 @@ form {
 
 	<table class="tbl paginated" id="tbl"></table>
 
-	<!-- search{s} -->
-	<div class="form-group row justify-content-center">
-		<div class="w100" style="padding-right: 10px">
-			<select class="form-control form-control-sm" name="searchType"
-				id="searchType">
-				<option value="title">제목</option>
-				<option value="Content">본문</option>
-				<option value="reg_id">작성자</option>
-			</select>
-		</div>
-		<div class="w300" style="padding-right: 10px">
-			<input type="text" class="form-control form-control-sm"
-				name="keyword" id="keyword">
-		</div>
-		<div>
-			<button class="btn btn-sm btn-primary" name="btnSearch"
-				id="btnSearch">검색</button>
-		</div>
-	</div>
-	<!-- search{e} -->
+	
 
 
 	<div class="form-group justify-content-center" tex-align:center

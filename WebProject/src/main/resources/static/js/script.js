@@ -13,10 +13,35 @@ $('table').on('click', 'button[id="deleteButton"]', function(e){
 		alert("삭제되었습니다.");
 	});
 
-
-
+/*
+function chartData(data) {
+		$('#container').hightcharts({
+			chart: {
+				type: 'column'
+			},
+			ttitle: {
+				text: 'HELLO'
+			},
+			xAxis: {
+				type: 'date',
+				labels: {
+					formatter: function() {
+						return Highcharts.dateFormat('%b %e. %y', this.value, 1);
+					}
+				}
+			},
+			yAxis: {
+				title: {
+					text: 'Number'
+				}
+			},
+			series: data
+		});
+	}
+*/
 //ready function 시작	
 $(document).ready(function(){
+			
 
 	getDataTable();
 
@@ -53,7 +78,7 @@ $(document).ready(function(){
 			type: "GET",
 			async : false,
 			success: function(data) {
-				console.log('data = ', data);
+				//console.log('data = ', data.origin[1]);
 				jsonData = data;
 			}
 		});
@@ -63,8 +88,93 @@ $(document).ready(function(){
 	
 	var jsonData = jsonDATA();
 	console.log("jsonData = ", jsonData);
+	
+//------------------------------------------------------------------------------------------		
+	
+	
+	function regdate() {
+		$.ajax({
+			url:"http://localhost:8080/regdate",
+			dataType:"json",
+			type: "GET",
+			async : false,
+			success: function(data) {
+				regdate = data;
+			}
+		});
+		return regdate;
+	}
+	var regdate = regdate();
+	console.log("regdate  = ", regdate);
+	
+	// JSON 특정 컬럼값 배열로 추출
+	var list1 = new Array();
+	$.each(regdate,function(index, item) {
 
-	// Custom logic start.
+		list1.push(item.listName);
+	})
+	console.log("list1 = ", list1);
+	
+	var list2 = new Array();
+	$.each(regdate,function(index, item) {
+
+		list2.push(item.dateCnt);
+	})
+	console.log("list2 = ", list2);
+	
+	var list3 = new Array();
+	$.each(regdate,function(index, item) {
+
+		list3.push(item.test);
+	})
+	console.log("list3 = ", list3);
+	
+
+	
+	
+	let title={text:'날짜별 등록 게시글 수'};
+	let subtitle={text:'날짜별 등록 게시글 수'};
+	let xAxis = {
+		//날짜별 데이터
+		categories: list3
+	};
+	let yAxis = {
+		title: {
+			text:'게시글 수'	
+		},
+		plotLines:[{
+			value:0,
+			width:1,
+			color:'#808080'
+		}]
+	};
+	let legend={
+		layout:'vertical',
+		align:'right',
+		vericalAlign:'middle',
+		borderWidh:0
+	};
+	let series=[{
+		name:'10월',
+		//게시글 수 데이터
+		data:list2	
+	}];
+	let json={};
+	json.title=title;
+	json.subtitle=subtitle;
+	json.xAxis=xAxis;
+	json.yAxis=yAxis
+	json.series=series;
+	
+	$("#container").highcharts(json);
+
+
+
+//-----------------------------------------------------------------------------------
+
+
+
+	/*// Custom logic start.
 	var jsonDataNextID = jsonData.length + 1;
 	function getIndexById(id) {
 		var idx,
@@ -76,26 +186,20 @@ $(document).ready(function(){
         }
 		return null;
     }
-    // Custom logic end.
+    // Custom logic end.*/
 	
 	// dataSource
 	var dataSource = new kendo.data.DataSource({
 		transport: {
 			read: {
-				url:"/json",
+
+				url:"/json", 
 				type:"post",
-				dataType:"json"
+				dataType:"json",
+				cache:false
+				
 			},
-			//function(e) {
-			//	e.success(jsonData);
-			//},
-			/*
-			<form action="/add" method="post">
-				<input type="number" name="listNum" placeholder="number"> 
-				<input type="text" name="listName" placeholder="name">
-				<button type="submit" class="btn btn-danger" id="saveButton">추가하기</button>
-			</form>
-			*/
+				
 			create: {
 				url:"/add",
 				type:"post",
@@ -117,6 +221,7 @@ $(document).ready(function(){
 		},
 		pageSize: 10,
 		schema: {
+			//서버 응답이 사용되기 전에 실행됩니다. 이를 사용하여 서버 응답을 전처리하거나 구문 분석하십시오.
 			parse: function(data) {
 				var events = [];
 		        for (var i = 0; i < data.length; i++) {
@@ -127,17 +232,23 @@ $(document).ready(function(){
 		        }
 			 	return events;
 			},
+			//데이터 항목 (모델) 구성입니다.
 			model: {
+				// 모델의 id값 , 이 필드는 ID가 모델 구성에 정의된 경우에만 사용할 수 있다
 				id: "listNum",
+				// 모델 ID 필드의 이름. 이 필드는 ID가 모델 구성에 정의된 경우에만 사용할 수 있다.
 				fields: {
+					// editable : 지정된 필드가 편집 가능한지 여부를 결정한다.
+					// define : 제공된 옵션을 사용하여 새 모델 유형을 정의하십시오. 반환된 값은 kendo.data에서 상속된다.모델 클래스.
 			 		listNum: {nullable:true},
-			 		listName: {},
-			 		fileName: {},
+			 		listName: {},		
+			 		fileOriName: {validation: {required: false}, editable: false},
+			 		//files: {},
 			 		//ResumeFileUrl: {validation: {required: true}, type:"string", template:},
 			 		regDate: {editable: false, type: "date"},
 			 		EventDate: {type: "date"}
 			 	}
-			}	
+			}
 		}	
 	});	
 	$("#editor").kendoEditor({
@@ -162,13 +273,51 @@ $(document).ready(function(){
 			columns:[{title:"Num", field:"listNum", width:200},
 					 {title:"Name", field:"listName", width:200,
 					 template:"<a class='k-button' id='detailButton' href='/detail/#=listNum#'>#=listName#</a>"},
-					 //{title:"File", field:"fileName", width:200,
+					 {title:"File", field:"fileOriName", width:200, 
+					  //command:{name:"open",click:function(e) {	},template: "<input type='file' name='files'/>"}
+					 },
+					  //{command:["edit", "destroy"], title:"Action", width: "200px"}
+					  /*{
+  command: [{
+  name: "edit",
+  iconClass:"k-icon k-i-copy",
+  text: {
+     edit: "Custom edit", //누르면
+     cancel: "Custom cancel", //이거하고
+     update: "Custom update" // 이게 생김
+  }
+ }]
+},
+{
+  command: [{
+  name: "edit",
+  text: {
+     edit: "filename", //누르면
+     cancel: "upload", //이거하고
+     update: "Custom update" // 이게 생
+  }
+ }]
+},*/
+					  
+					  
+					  //{command:{template: "<input type='file' name='files'/>"}},
+					 
+					 
+					 
+					 
+					 //{title:"File", field:"fileOriName", width:200,
+					 //template:"<input type='file' name='files' placeholder='file'>"},
+					 //{command:{name:"open",click:function(e) {	},template: "<input type='file' name='files'/>"}, title:"File", width:200},
+					 
+					 
+					//template:"<a class='k-button' id='detailButton' href='/detail/#=listNum#'>#=listName#</a>"},
+					 //{title:"File", field:"fileName", width:200, 
 					 //template:"<button>Upload</button>"},
-					 {command:{ text:"zzz", click:"listNum" }, title:"File", width:200},
 					 //template:"<input type='button' class='k-button' name='ㅋㅋㅋ' value='ㅋㅋㅋ'/>"},
 					// template:"<input type='button' class='k-button' name='Upload' value='Upload'/>"},
 				   //{title:"Resume", field:"ResumeFileUrl", width:"80px",
 				   // 	 template:'<button class="k-button" onClick="uploadFiles(#=fileName#)">Upload<br/>Files</button>' },
+				   
 					 {title:"Date", field:"EventDate", width:200,
 						 template:"#= kendo.toString(regDate, 'yyyy/MM/dd HH:mm') #"},
 					 {command:["edit", "destroy"], title:"Action", width: "200px"}
@@ -194,7 +343,7 @@ $(document).ready(function(){
 			groupable: true
 		});
 		
-
+	
 	function getDataTable() {
 		$.ajax({
 			type: "GET",

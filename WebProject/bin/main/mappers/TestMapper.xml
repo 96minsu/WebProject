@@ -25,9 +25,13 @@
   	<select id="testList" resultType="com.example.WebProject.domain.dto.TestDTO">
   		select * from list
   	</select>
-
-	<insert id="insertList"  parameterType="com.example.WebProject.domain.dto.TestDTO" useGeneratedKeys="true">
-		INSERT INTO list VALUES (#{listNum}, #{listName}, #{regDate})
+  	
+  	<select id="testAllList" resultType="com.example.WebProject.domain.dto.TestDTO">
+  		select list.listNum, listName,regDate, files.fileOriName from list join files on list.listNum = files.listNum ;
+  	</select>
+  	
+	<insert id="insertList"  parameterType="com.example.WebProject.domain.dto.TestDTO" useGeneratedKeys="true" keyProperty="listNum">
+		INSERT INTO list(listNum, listName, regDate) VALUES (#{listNum}, #{listName}, #{regDate})
 	</insert>
 	
 	<update id="updateList"  parameterType="com.example.WebProject.domain.dto.TestDTO">
@@ -39,11 +43,34 @@
 	</delete>
 	
 	<insert id="insertFile" parameterType="com.example.WebProject.domain.dto.FileVO">
-		insert into files (fno, listNum, filename, fileOriName, fileurl)
+		insert into files (fno, listNum, filename, fileOriName, fileUrl)
 		values (#{fno},#{listNum},#{filename},#{fileOriName},#{fileUrl})
 	</insert>
 	
 	<select id="fileDetail" parameterType="int" resultType="com.example.WebProject.domain.dto.FileVO">
 		select * from files where listNum=#{listNum}
+	</select>
+	
+<!-- 	<insert id="insertFile2" parameterType="com.example.WebProject.domain.dto.TestDTO">
+		insert into list (filename, fileOriName, fileUrl)
+		values (#{filename},#{fileOriName},#{fileUrl})
+	</insert>
+	
+	<select id="fileDetail2" parameterType="int" resultType="com.example.WebProject.domain.dto.TestDTO">
+		select * from list where listNum=#{listNum}
+	</select> -->
+	
+	<select id="countDate" resultType="int">
+		select count(*) from list where regDate=#{regDate}
+	</select>
+	
+	<select id="zzz" resultType="com.example.WebProject.domain.dto.TestDTO">
+		select distinct date_format(regDate , '%d일') from list 
+	</select>
+	
+	<select id="regdate" resultType="com.example.WebProject.domain.dto.TestDTO">
+		<!-- select listName, count(*) as dateCnt from list group by listName -->
+		select date_format(regDate , '%Y-%m-%d') as test, count(*) as dateCnt from list group by test
+		<!-- select date_format(regDate , '%Y-%m-%d') as date, count(*) from list group by date; --> 
 	</select>
 </mapper>

@@ -5,7 +5,7 @@
 <form action="/add" method="post" enctype="multipart/form-data">
 	<input type="number" name="listNum" placeholder="number"> 
 	<input type="text" name="listName" placeholder="name">
-	<input type="file" name="files" placeholder="file">
+	<input type="file" name="files">
 	<button type="submit" class="btn btn-danger" id="saveButton">추가하기</button>
 </form>
 

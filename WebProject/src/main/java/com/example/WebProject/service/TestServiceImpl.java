@@ -38,6 +38,11 @@ public class TestServiceImpl implements TestService{
 	}
 	
 	@Override
+	public List<TestDTO> testAllList() throws Exception {
+		return testDAO.testAllList();
+	}
+	
+	@Override
 	public TestDTO listDetailService(int listNum) throws Exception {
 		return testDAO.listDetail(listNum);
 	}
@@ -66,4 +71,27 @@ public class TestServiceImpl implements TestService{
 	public FileVO fileDetailService(int listNum) throws Exception{
 		return testDAO.fileDetail(listNum);
 	}
+	
+	@Override
+	public int countDate() throws Exception {
+		return testDAO.countDate();
+	}
+	
+	@Override
+	public List<TestDTO> zzz() throws Exception {
+		return testDAO.zzz();
+	}
+	
+	@Override
+	public List<TestDTO> regdate() throws Exception{
+		return testDAO.regdate();
+	}
+	
+	/*
+	 * @Override public int insertFileService2(TestDTO file) throws Exception {
+	 * return testDAO.insertFile2(file); }
+	 * 
+	 * @Override public TestDTO fileDetailService2(int listNum) throws Exception{
+	 * return testDAO.fileDetail2(listNum); }
+	 */
 }
