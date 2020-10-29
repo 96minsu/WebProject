@@ -46,6 +46,7 @@ $(document).ready(function(){
 	getDataTable();
 
 	$("#addButton").click(function(){
+			
 		$.ajax({
 			type:'post'
 			,url:'/addform'

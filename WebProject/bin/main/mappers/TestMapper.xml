@@ -60,13 +60,6 @@
 		select * from list where listNum=#{listNum}
 	</select> -->
 	
-	<select id="countDate" resultType="int">
-		select count(*) from list where regDate=#{regDate}
-	</select>
-	
-	<select id="zzz" resultType="com.example.WebProject.domain.dto.TestDTO">
-		select distinct date_format(regDate , '%d일') from list 
-	</select>
 	
 	<select id="regdate" resultType="com.example.WebProject.domain.dto.TestDTO">
 		<!-- select listName, count(*) as dateCnt from list group by listName -->

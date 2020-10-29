@@ -73,16 +73,6 @@ public class TestServiceImpl implements TestService{
 	}
 	
 	@Override
-	public int countDate() throws Exception {
-		return testDAO.countDate();
-	}
-	
-	@Override
-	public List<TestDTO> zzz() throws Exception {
-		return testDAO.zzz();
-	}
-	
-	@Override
 	public List<TestDTO> regdate() throws Exception{
 		return testDAO.regdate();
 	}

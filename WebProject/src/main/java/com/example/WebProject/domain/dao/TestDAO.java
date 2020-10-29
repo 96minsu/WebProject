@@ -27,11 +27,7 @@ public interface TestDAO {
 	public int insertFile(FileVO file) throws Exception;
 	
 	public FileVO fileDetail(int listNum) throws Exception;
-	
-	public int countDate() throws Exception;
-
-	public List<TestDTO> zzz() throws Exception;
-	
+		
 	public List<TestDTO> regdate() throws Exception;
 	/*
 	 * public int insertFile2(TestDTO file) throws Exception;

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WebProject
+Bundle-SymbolicName: WebProject
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.example.WebProject,
+ com.example.WebProject.config,
+ com.example.WebProject.controller,
+ com.example.WebProject.domain,
+ com.example.WebProject.domain.dao,
+ com.example.WebProject.domain.dto,
+ com.example.WebProject.domain.entity,
+ com.example.WebProject.pNs,
+ com.example.WebProject.service,
+ mappers,
+ templates

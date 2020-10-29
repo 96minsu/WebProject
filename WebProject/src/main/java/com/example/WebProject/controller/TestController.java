@@ -9,8 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.example.WebProject.domain.ListDto;
-import com.example.WebProject.domain.dao.TestDAO;
 import com.example.WebProject.domain.dto.FileVO;
 import com.example.WebProject.domain.dto.TestDTO;
 import com.example.WebProject.service.TestService;
@@ -64,25 +57,22 @@ public class TestController {
 		return dto;
 	}
 	
-	@RequestMapping("/dateJson")
-	@ResponseBody
-	public int countDate() throws Exception {
-		int dto = testService.countDate();
-		return dto;
-	}
-	
-	@RequestMapping("/zzz")
-	@ResponseBody
-	public List<TestDTO> zzz() throws Exception {
-		List<TestDTO> dto = testService.zzz();
-		return dto;
-	}
-	
 	@GetMapping("/regdate")
 	@ResponseBody
 	public List<TestDTO> regdate() throws Exception {
 		System.out.println(testService.regdate());
 		List<TestDTO> dto = testService.regdate();
+		
+		
+		
+		
+		int a = 10;
+		int b = 20;
+		System.out.println(a+b);
+		
+		
+		
+		
 		return dto;
 	}
 

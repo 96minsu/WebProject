@@ -13,7 +13,7 @@
 </head>
 <body>
 <h3>방명록 글쓰기</h3>
-<jsp:include page="guestform.jsp"/>
+
 <hr align="left" width="500" style="background-color: pink;height: 10px;">
 <div class="alert alert-success" style="width: 500px;">
 	<b>총 ${totalCount}개의 방명록 글이 있습니다</b>

@@ -29,10 +29,6 @@ public interface TestService {
 	
 	public FileVO fileDetailService(int listNum) throws Exception;
 	
-	public int countDate() throws Exception;
-
-	public List<TestDTO> zzz() throws Exception;
-	
 	public List<TestDTO> regdate() throws Exception;
 	
 	

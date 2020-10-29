@@ -1,0 +1,145 @@
+INFO  20-10-26 14:22:00[restartedMain] [WebProjectApplication:55] - Starting WebProjectApplication on DESKTOP-FCFRV7I with PID 20944 (C:\Users\JK코어\Desktop\project\git 저장소\WebProject\WebProject\bin\main started by JKCore in C:\Users\JK코어\Desktop\project\git 저장소\WebProject\WebProject)
+INFO  20-10-26 14:22:00[restartedMain] [WebProjectApplication:651] - No active profile set, falling back to default profiles: default
+INFO  20-10-26 14:22:01[restartedMain] [RepositoryConfigurationDelegate:127] - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+INFO  20-10-26 14:22:01[restartedMain] [RepositoryConfigurationDelegate:187] - Finished Spring Data repository scanning in 32ms. Found 1 JPA repository interfaces.
+WARN  20-10-26 14:22:01[restartedMain] [ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'testDAO' and 'com.example.WebProject.domain.dao.TestDAO' mapperInterface. Bean already defined with the same name!
+WARN  20-10-26 14:22:01[restartedMain] [ClassPathMapperScanner:44] - No MyBatis mapper was found in '[com.example.WebProject.domain.dao]' package. Please check your configuration.
+INFO  20-10-26 14:22:01[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  20-10-26 14:22:01[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  20-10-26 14:22:01[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.37]
+INFO  20-10-26 14:22:01[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  20-10-26 14:22:01[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  20-10-26 14:22:01[restartedMain] [ServletWebServerApplicationContext:285] - Root WebApplicationContext: initialization completed in 692 ms
+INFO  20-10-26 14:22:01[restartedMain] [ThreadPoolTaskExecutor:181] - Initializing ExecutorService 'applicationTaskExecutor'
+INFO  20-10-26 14:22:01[restartedMain] [HikariDataSource:110] - HikariPool-4 - Starting...
+INFO  20-10-26 14:22:01[restartedMain] [HikariDataSource:123] - HikariPool-4 - Start completed.
+INFO  20-10-26 14:22:01[task-1] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  20-10-26 14:22:01[task-1] [Dialect:170] - HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+WARN  20-10-26 14:22:02[restartedMain] [JpaBaseConfiguration$JpaWebConfiguration:220] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  20-10-26 14:22:02[task-1] [JtaPlatformInitiator:52] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+INFO  20-10-26 14:22:02[task-1] [LocalContainerEntityManagerFactoryBean:416] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+INFO  20-10-26 14:22:02[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  20-10-26 14:22:02[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  20-10-26 14:22:02[restartedMain] [DeferredRepositoryInitializationListener:49] - Triggering deferred initialization of Spring Data repositories…
+INFO  20-10-26 14:22:02[restartedMain] [DeferredRepositoryInitializationListener:53] - Spring Data repositories initialized!
+INFO  20-10-26 14:22:02[restartedMain] [WebProjectApplication:61] - Started WebProjectApplication in 1.589 seconds (JVM running for 770.059)
+INFO  20-10-26 14:22:02[restartedMain] [ConditionEvaluationDeltaLoggingListener:63] - Condition evaluation unchanged
+INFO  20-10-26 14:22:02[restartedMain] [WebProjectApplication:23] - Simple log statement with inputs 1, 2 and 3
+INFO  20-10-26 14:22:40[Thread-20] [LocalContainerEntityManagerFactoryBean:598] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  20-10-26 14:22:40[Thread-20] [ThreadPoolTaskExecutor:218] - Shutting down ExecutorService 'applicationTaskExecutor'
+INFO  20-10-26 14:22:40[Thread-20] [HikariDataSource:350] - HikariPool-4 - Shutdown initiated...
+INFO  20-10-26 14:22:40[Thread-20] [HikariDataSource:352] - HikariPool-4 - Shutdown completed.
+ERROR 20-10-26 14:22:40[restartedMain] [SpringApplication:837] - Application run failed
+java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.action.PropertyAction - Could not find resource [logback-local.properties].
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:118)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:306)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:281)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.example.WebProject.WebProjectApplication.main(WebProjectApplication.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+DEBUG 20-10-26 14:23:01[restartedMain] [ClasspathLoggingApplicationListener:54] - Application failed to start with classpath: [file:/C:/Users/JK%ec%bd%94%ec%96%b4/Desktop/project/git%20%ec%a0%80%ec%9e%a5%ec%86%8c/WebProject/WebProject/bin/main/]
+ERROR 20-10-26 14:23:01[restartedMain] [SpringApplication:837] - Application run failed
+java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.action.PropertyAction - Could not find resource [logback-local.properties].
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:118)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:306)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:281)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.example.WebProject.WebProjectApplication.main(WebProjectApplication.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+DEBUG 20-10-26 14:26:29[restartedMain] [Restarter:222] - Creating new Restarter for thread Thread[main,5,main]
+DEBUG 20-10-26 14:26:29[restartedMain] [Restarter:222] - Immediately restarting application
+DEBUG 20-10-26 14:26:29[restartedMain] [Restarter:222] - Created RestartClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@6e7b0434
+DEBUG 20-10-26 14:26:29[restartedMain] [Restarter:222] - Starting application com.example.WebProject.WebProjectApplication with URLs [file:/C:/Users/JK%ec%bd%94%ec%96%b4/Desktop/project/git%20%ec%a0%80%ec%9e%a5%ec%86%8c/WebProject/WebProject/bin/main/]
+DEBUG 20-10-26 14:26:29[restartedMain] [ClasspathLoggingApplicationListener:54] - Application failed to start with classpath: [file:/C:/Users/JK%ec%bd%94%ec%96%b4/Desktop/project/git%20%ec%a0%80%ec%9e%a5%ec%86%8c/WebProject/WebProject/bin/main/]
+ERROR 20-10-26 14:26:29[restartedMain] [SpringApplication:837] - Application run failed
+java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.action.PropertyAction - Could not find resource [logback-local.properties].
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:118)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:306)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:281)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.example.WebProject.WebProjectApplication.main(WebProjectApplication.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+ERROR 20-10-26 14:40:23[restartedMain] [SpringApplication:837] - Application run failed
+java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.action.PropertyAction - Could not find resource [logback-local.properties].
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:118)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:306)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:281)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.example.WebProject.WebProjectApplication.main(WebProjectApplication.java:27)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
